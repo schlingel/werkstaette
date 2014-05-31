@@ -1,0 +1,98 @@
+#!/usr/local/bin/node
+/**
+ * Simple generator which creates a RSS feed file from the articles.json
+ * Just run articles2rss in blog directory
+ */
+
+var waterfall = require('async-waterfall'),
+    fs = require('fs'),
+    dateformat = require('dateformat'),
+    js2xmlparser = require("js2xmlparser");
+
+waterfall([
+    readJson,
+    enrichJson,
+    createRssXml,
+    printReportToStdout
+], handleResult);
+
+
+function readJson(callback) {
+    var path = process.cwd() + '/articles.json';
+
+    fs.readFile(path, 'utf8', function(error, data) {
+        if(error) {
+            callback(error);
+        } else {
+            callback(null, JSON.parse(data));
+        }
+    });
+}
+
+function handleError(error) {
+    console.log('Error occurred!');
+    console.log(error);
+}
+
+function enrichJson(json, callback) {
+    var rssObj = getDefaultObjectStructure();
+
+    json.articles.forEach(function(article) {
+        rssObj.channel.item.push({
+            "title" : article.title,
+            "description" : article.description,
+            "author" : getAuthor(),
+            "guid" : "http://schlingel.bplaced.net/" + article.link,
+            "pubDate" : article.date
+        });
+    });
+
+    callback(null, rssObj);
+}
+
+function createRssXml(rssObj, callback) {
+    var xml = js2xmlparser("rss", rssObj),
+        path = process.cwd() + '/rss.xml';
+
+    fs.writeFile(path, xml, function(error) {
+        if(error) {
+            callback(error);
+        } else {
+            callback(null, "Written RSS feed file " + path);
+        }
+    });
+}
+
+function printReportToStdout(message) {
+    console.log(message);
+}
+
+function handleResult(error, result) {
+    if(error) {
+        handleError(error);
+    } else {
+        printReportToStdout(result);
+    }
+}
+
+function getDefaultObjectStructure() {
+    return {
+            "channel" : {
+                "title" : "Schlingel's Werkstätte",
+                "link" : "http://schlingel.bplaced.net",
+                "description" : "Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt",
+                "language" : "de-AT",
+                "copyright" : "Martin Keiblinger",
+                "pubDate" : getNowAsFormattedDate(),
+                "item" : []
+            }
+        };
+}
+
+function getNowAsFormattedDate() {
+    return dateformat();
+}
+
+function getAuthor() {
+    return "Martin Keiblinger, der-schlingel@gmx.at"
+}
