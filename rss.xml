@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss>
+	<channel>
+		<title>Schlingel&apos;s Werkstätte</title>
+		<link>http://schlingel.bplaced.net</link>
+		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
+		<language>de-AT</language>
+		<copyright>Martin Keiblinger</copyright>
+		<pubDate>Sat May 31 2014 21:23:18</pubDate>
+		<item>
+			<title>Wie Schlingel&apos;s Werkstatt funktionieren (soll)</title>
+			<description>Wie funktioniert dieser Blog? Wird hier wirklich alles händisch in HTML geschrieben? In diesem Artikel wird erklärt wie es im Moment funktioniert und wie es in Zukunft funktioneren soll.</description>
+			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<guid>http://schlingel.bplaced.net/blog_engine.html</guid>
+			<pubDate>01.06.2014</pubDate>
+		</item>
+		<item>
+			<title>Copyright vs. Community - Stallmann zu Besuch</title>
+			<description>Link to short article describing stallmans visit in vienna and his talk copyright vs community</description>
+			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<guid>http://schlingel.bplaced.net/stallman_besuch.html</guid>
+			<pubDate>30.05.2014</pubDate>
+		</item>
+	</channel>
+</rss>

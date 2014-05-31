@@ -2,6 +2,12 @@
     "description" : "A very simple JSON containing the list of all articles. This allows the dynamically rendering of the latest articles on the client without the need to write HTML every time.",
     "articles" : [
         {
+            "date" : "01.06.2014",
+            "title" : "Wie Schlingel's Werkstatt funktionieren (soll)",
+            "description" : "Wie funktioniert dieser Blog? Wird hier wirklich alles händisch in HTML geschrieben? In diesem Artikel wird erklärt wie es im Moment funktioniert und wie es in Zukunft funktioneren soll.",
+            "link" : "blog_engine.html"
+        },
+        {
             "date" : "30.05.2014",
             "title" : "Copyright vs. Community - Stallmann zu Besuch",
             "description" : "Link to short article describing stallmans visit in vienna and his talk copyright vs community",

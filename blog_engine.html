@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="Martin Keiblinger">
+    <meta name="keywords" content="Blog,Offline,Engine,Website Creator">
+    <meta name="description" content="Wie funktioniert dieser Blog? Wird hier wirklich alles händisch in HTML geschrieben? In diesem Artikel wird erklärt wie es im Moment funktioniert und wie es in Zukunft funktioneren soll.">
+    <title>Wie Schlingel's Werkstatt funktionieren (soll)</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/blog.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+    <h1><a href="index.html">Schlingel's Werkstätte</a></h1>
+    <p>Software Engineering as Passion</p>
+</header>
+
+<section>
+    <article>
+        <header>
+            <h1>Wie Schlingel's Werkstatt funktionieren (soll)</h1>
+            <p>Martin, 01.06.2014</p>
+        </header>
+        <p>Diese Website besteht ausschließlich aus HTML-Files und ein paar CSS Files. Im Moment wird die Frontseite auch noch mittels Javascript bevölkert aber auch das soll in Zukunft in einen Build-Prozess verschoben werden. Mein erster Ansatz war es die ganzen Artikel in Latex zu schreiben und dann das aus dem Latex generierten HTML den Inhalt heraus zu parsen und diesen in ein Website-Template einzupflanzen. Dieser Ansatz habe ich <a href="https://github.com/schlingel/oobe" alt="Link zum OOBE-Repository">oobe</a> (Oobe is a Offline Blog Engine) getauft.</p>
+        <p>Die Idee war nicht schlecht allerdings ist der Buildprozess mittels Ant, Latex, Shell-Skript und selbst gestricktem Ant-Task alles andere als einfach zu verstehen und leider auch fragil. Dementsprechend habe ich das dann nie weiter verfolgt. Warum auch in einer Markup-Sprache seine Artikel schreiben nur um sie dann doch in eine andere zu transformieren? Und das auch noch auf Kosten der Einfachheit beim Schreiben? IMHO ist HTML noch immer einfacher als Latex, als auf Dauer doch keine echte Option.</p>
+        <p>Dementsprechend began ich heute das ganze Geraffel in HTML umzuschreiben und mir den Bildprozess mit Node etwas zu vereinfachen. Im Moment funktioniert das ganze so:</p>
+        <ol>
+            <li>Ich schreibe meinen Artikel in HTML. Dazu nehme ich das Template-File her und setze die Werte ein.</li>
+            <li>Ich füge den neuen Eintrag dem articles.json hinzu.</li>
+            <li>Ich generiere in der Shell mit dem articles2rss-Skript ein rss.xml</li>
+            <li>Ich lade händisch alle neuen Files per FTP hoch.</li>
+        </ol>
+        <p>Das möchte ich alles noch weiter automatisieren und diese ganzen Tasks in Grunt gießen. Ziel ist es nur noch das HTML-File zu schreiben und dann einen Grunt-Task auszuführen damit das ganze so aussieht:</p>
+        <img src="img/blog_workflow.png" alt="Bild des angepeilten Workflows. Im Unterschied zu vorhin werden nun alle Schritte durch Grunt-Tasks erledigt.">
+        <h2>Ausstehende Arbeit</h2>
+        <p>Was ist da noch zu tun? Nun, zum einen muss die Startseite immer wieder neu generiert werden. Vorzugsweise aus dem articles.json-File. Vorzugsweise muss ich das articles.json auch nicht mehr händisch pflegen sondern kann das ganze aus dem neu erstellten HTML-File heraus parsen. Die nötigen Informationen kann ich alle aus dem header-Element auslesen.</p>
+        <p>Aus dem erstellten articles.json heraus kann ich dann mittels handlebars eine hübsche Übersicht generieren lassen. Das rss.xml-File automatisch zu erstellen sollte ja kein Problem sein, da dies ja schon per Skript geschieht.</p>
+        <p>Auch das ganze per FTP hochzuladen funktioniert aus Grunt heraus. Damit kann ich dann - so wie gerade im Moment - immer mehr Text zu produzieren während ich prokrastiniere ohne mich um so nervige Infrastrukturarbeiten bemühen zu müssen.</p>
+        <p>Da es auch im alten Wordpress-Blog keine Kommentare gab, steht die Entscheidung noch aus ob ich dieses Feature per Javascript injecten werde. Ich mag Disqus nicht und ohne Not werde ich auch kein PHP-Skript einbauen. (Auch wenn es mit <a href="https://github.com/monperrus/jskomment" alt="Link zum jskomment-Repository">jskomment</a> ein freies und vor allem einfaches System gäbe.)</p>
+        <p>Im Unterschied zu oobe sieht's nun ganz gut aus, dass ich das Projekt auch fertig stelle da es kein Meta-Projekt ist das fertig werden muss um diesen Blog zu pflegen sondern bereits als WIP-Projekt genutzt wird um ihn zu pflegen.</p>
+    </article>
+</section>
+
+<footer>
+    <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+    <p>Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.</p>
+    <p><a href="index.html" alt="Link zur Startseite">Startseite</a> | <a href="impressum.html" alt="Link zum Impressum">Impressum</a> | <a href="http://schlingel.bplaced.net/rss.xml" alt="Link zum RSS-Feed">Artikel als RSS-Feed<a/></p>
+</footer>
+
+</body>
+</html>
