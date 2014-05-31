@@ -1,31 +1,39 @@
+/*
+ @licstart  The following is the entire license notice for the
+ JavaScript code in this page.
+
+ Copyright (C) 2014  Martin Keiblinger
+
+ The JavaScript code in this page is free software: you can
+ redistribute it and/or modify it under the terms of the GNU
+ General Public License (GNU GPL) as published by the Free Software
+ Foundation, either version 3 of the License, or (at your option)
+ any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+ As additional permission under GNU GPL version 3 section 7, you
+ may distribute non-source (e.g., minimized or compacted) forms of
+ that code without the copy of the GNU GPL normally required by
+ section 4, provided you include this license notice and a URL
+ through which recipients can access the Corresponding Source.
+
+
+ @licend  The above is the entire license notice
+ for the JavaScript code in this page.
+ */
 (function($) {
-    var baseUrl = "http://schlingel.bplaced.net",
-        articlesUrl = baseUrl + "/articles.json";
+    $(document).ready(function() {
+        $('.article-link').each(function() {
+           var $article = $(this),
+               href = $article.find('.btn-default').attr('href');
 
-    loadArticlesJson().done(processArticlesData).fail(processErrorResponse);
-
-    function loadArticlesJson() {
-        return $.ajax({
-            url : articlesUrl,
-            dataType : "json"
+           $article
+               .attr('data-article-link', href)
+               .css('cursor', 'pointer')
+               .click(function() {
+                    window.location = $(this).attr('data-article-link');
+               });
         });
-    };
-
-    function processArticlesData(articlesData) {
-        var template = '<li><a href="%LINK%" alt="%DESCRIPTION%">%DATE%, %TITLE%</li>',
-            html = '';
-
-        articlesData.articles.forEach(function(article) {
-            html += template.replace("%LINK%", article.link)
-                            .replace("%DESCRIPTION%", article.description)
-                            .replace("%DATE%", article.date)
-                            .replace("%TITLE%", article.title);
-        });
-
-        $('ul').html(html);
-    }
-
-    function processErrorResponse() {
-        alert('ERROR!');
-    }
+    });
 })($);

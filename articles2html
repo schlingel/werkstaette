@@ -1,0 +1,79 @@
+#!/usr/local/bin/node
+/**
+ * Simple generator which creates a RSS feed file from the articles.json
+ * Just run articles2rss in blog directory
+ */
+
+var waterfall = require('async-waterfall'),
+    fs = require('fs'),
+    handlebars = require('handlebars'),
+    js2xmlparser = require("js2xmlparser");
+
+waterfall([
+    readJson,
+    readTemplate,
+    createHtml,
+    writeHtmlToFile,
+    printReportToStdout
+], handleResult);
+
+
+function readJson(callback) {
+    var path = process.cwd() + '/articles.json';
+
+    fs.readFile(path, 'utf8', function(error, data) {
+        if(error) {
+            callback(error);
+        } else {
+            callback(null, JSON.parse(data));
+        }
+    });
+}
+
+function readTemplate(json, callback) {
+    var path = process.cwd() + '/templates/index.handlebars';
+
+    fs.readFile(path, 'utf8', function(error, data) {
+       if(error) {
+           callback(error);
+       } else {
+           callback(null, json, data);
+       }
+    });
+}
+
+function handleError(error) {
+    console.log('Error occurred!');
+    console.log(error);
+}
+
+function createHtml(json, htmlTemplate, callback) {
+    var indexBuilder = handlebars.compile(htmlTemplate),
+        html = indexBuilder(json);
+
+    callback(null, html);
+}
+
+function writeHtmlToFile(html, callback) {
+    var path = process.cwd() + '/index.html';
+
+    fs.writeFile(path, html, function(error) {
+        if(error) {
+            callback(error);
+        } else {
+            callback(null, "Written new index file " + path);
+        }
+    });
+}
+
+function printReportToStdout(message) {
+    console.log(message);
+}
+
+function handleResult(error, result) {
+    if(error) {
+        handleError(error);
+    } else {
+        printReportToStdout(result);
+    }
+}

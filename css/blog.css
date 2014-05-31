@@ -58,3 +58,28 @@ footer {
     text-align: center;
     padding: 1em;
 }
+
+.article-link {
+    margin-bottom: 15px;
+    text-align: right;
+    padding: 0.8em;
+    border-radius: 3px;
+}
+
+.article-link > span {
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+.article-link:hover {
+    background: #fAfAfA;
+}
+
+.article-link > p {
+    text-align: left;
+    margin-top: 1em;
+}
+
+.article-link > h3 {
+    text-align: left;
+}
