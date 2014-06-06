@@ -1,7 +1,13 @@
 {
     "description" : "A very simple JSON containing the list of all articles. This allows the dynamically rendering of the latest articles on the client without the need to write HTML every time.",
     "articles" : [
-{
+        {
+            "date" : "06.06.2014",
+            "title" : "Überwachtes Netz - Gratis Ebook von Netzpolitik",
+            "description" : "In diesem kurzen Artikel wird auf das neue Buch von Netpolitik.org Überachtes Netz verwiesen.",
+            "link" : "ueberwachtes_netz.html"
+        },
+        {
             "date" : "03.06.2014",
             "title" : "Reset the Net - Wehrt euch!",
             "description" : "In diesem Artikel wird erklärt um was es sich bei der ResetTheNet-Initiative handelt und wer die dahinter stehende Organisation Fight for the Future ist.",
