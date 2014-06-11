@@ -6,11 +6,20 @@
 		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
 		<language>de-AT</language>
 		<copyright>Martin Keiblinger</copyright>
-		<pubDate>Fri Jun 06 2014 12:17:20</pubDate>
+		<pubDate>Wed Jun 11 2014 21:44:01</pubDate>
+		<item>
+			<title>Soup-Import broken? Vermutlich nur ein bisschen...</title>
+			<description>Kurzer Artikel der erklärt was geändert wurde damit der RSS-Import für soup.io funktioniert.</description>
+			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/soup_rss_update.html</link>
+			<guid>http://schlingel.bplaced.net/soup_rss_update.html</guid>
+			<pubDate>11.06.2014</pubDate>
+		</item>
 		<item>
 			<title>Überwachtes Netz - Gratis Ebook von Netzpolitik</title>
 			<description>In diesem kurzen Artikel wird auf das neue Buch von Netpolitik.org Überachtes Netz verwiesen.</description>
 			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/ueberwachtes_netz.html</link>
 			<guid>http://schlingel.bplaced.net/ueberwachtes_netz.html</guid>
 			<pubDate>06.06.2014</pubDate>
 		</item>
@@ -18,6 +27,7 @@
 			<title>Reset the Net - Wehrt euch!</title>
 			<description>In diesem Artikel wird erklärt um was es sich bei der ResetTheNet-Initiative handelt und wer die dahinter stehende Organisation Fight for the Future ist.</description>
 			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/reset_the_net.html</link>
 			<guid>http://schlingel.bplaced.net/reset_the_net.html</guid>
 			<pubDate>03.06.2014</pubDate>
 		</item>
@@ -25,6 +35,7 @@
 			<title>Wie Schlingel&apos;s Werkstatt funktionieren (soll)</title>
 			<description>Wie funktioniert dieser Blog? Wird hier wirklich alles händisch in HTML geschrieben? In diesem Artikel wird erklärt wie es im Moment funktioniert und wie es in Zukunft funktioneren soll.</description>
 			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/blog_engine.html</link>
 			<guid>http://schlingel.bplaced.net/blog_engine.html</guid>
 			<pubDate>01.06.2014</pubDate>
 		</item>
@@ -32,6 +43,7 @@
 			<title>Copyright vs. Community - Stallmann zu Besuch</title>
 			<description>Link to short article describing stallmans visit in vienna and his talk copyright vs community</description>
 			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/stallman_besuch.html</link>
 			<guid>http://schlingel.bplaced.net/stallman_besuch.html</guid>
 			<pubDate>30.05.2014</pubDate>
 		</item>

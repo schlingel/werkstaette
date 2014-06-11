@@ -2,6 +2,12 @@
     "description" : "A very simple JSON containing the list of all articles. This allows the dynamically rendering of the latest articles on the client without the need to write HTML every time.",
     "articles" : [
         {
+            "date" : "11.06.2014",
+            "title" : "Soup-Import broken? Vermutlich nur ein bisschen...",
+            "description" : "Kurzer Artikel der erklärt was geändert wurde damit der RSS-Import für soup.io funktioniert.",
+            "link" : "soup_rss_update.html"
+        },
+        {
             "date" : "06.06.2014",
             "title" : "Überwachtes Netz - Gratis Ebook von Netzpolitik",
             "description" : "In diesem kurzen Artikel wird auf das neue Buch von Netpolitik.org Überachtes Netz verwiesen.",
