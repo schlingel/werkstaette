@@ -42,6 +42,7 @@ function enrichJson(json, callback) {
             "title" : article.title,
             "description" : article.description,
             "author" : getAuthor(),
+            "link" : "http://schlingel.bplaced.net/" + article.link,
             "guid" : "http://schlingel.bplaced.net/" + article.link,
             "pubDate" : article.date
         });
