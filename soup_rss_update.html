@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="author" content="Martin Keiblinger">
+        <meta name="keywords" content="RSS,soup,import">
+        <meta name="description" content="Kurzer Artikel der erklärt was geändert wurde damit der RSS-Import für soup.io funktioniert.">
+        <title>Blog article</title>
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/blog.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <h2><a href="index.html">Schlingel's Werkstätte</a></h2>
+            <p>Software Engineering as Passion</p>
+        </header>
+
+        <section>
+            <article>
+                <header>
+                    <h1>Soup-Import broken? Vermutlich nur ein bisschen...</h1>
+                    <p>Martin, 11.06.2014</p>
+                </header>
+
+
+                <p>Ich habe seit dem Blog-Reboot keine Probleme gehabt, mit Ausnahme des RSS-Imports auf Soup.</p>
+                <p>Dort wurden weder Titel angezeigt noch der Link zu dem Artikel hier gesetzt. Da das unbefriedigend ist, nur die Description importiert bekommen zu haben, habe ich mir kurz angeschaut wie das Wordpress macht.</p>
+                <p>Der einzige offensichtlich Unterschied ist, dass WP auch ein Link-Element einfügt. Also habe ich das testweise ins articles2rss-Skript eingebaut. Sollte jetzt funktionieren.</p>
+            </article>
+        </section>
+
+    <footer>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+        <p>Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.</p>
+        <p><a href="index.html">Startseite</a> | <a href="impressum.html">Impressum</a> | <a href="http://schlingel.bplaced.net/rss.xml">Artikel als RSS-Feed<a/></p>
+    </footer>
+
+    </body>
+</html>

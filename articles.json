@@ -2,6 +2,12 @@
     "description" : "A very simple JSON containing the list of all articles. This allows the dynamically rendering of the latest articles on the client without the need to write HTML every time.",
     "articles" : [
         {
+            "date" : "23.06.2014",
+            "title" : "Simple Cloud Reader - SCR als Google Reader Ersatz",
+            "description" : "SCR (Simple Cloud Reader) ist ein Projekt das den Google Reader ersetzen soll. Sinn der Sache ist es, einen Reader zur Verfügung zu stellen der sowohl günstig wie auch schnell funktionert.",
+            "link" : "simple_reader_intro.html"
+        },
+        {
             "date" : "11.06.2014",
             "title" : "Soup-Import broken? Vermutlich nur ein bisschen...",
             "description" : "Kurzer Artikel der erklärt was geändert wurde damit der RSS-Import für soup.io funktioniert.",

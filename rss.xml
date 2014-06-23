@@ -6,7 +6,15 @@
 		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
 		<language>de-AT</language>
 		<copyright>Martin Keiblinger</copyright>
-		<pubDate>Wed Jun 11 2014 21:44:01</pubDate>
+		<pubDate>Mon Jun 23 2014 14:45:32</pubDate>
+		<item>
+			<title>Simple Cloud Reader - SCR als Google Reader Ersatz</title>
+			<description>SCR (Simple Cloud Reader) ist ein Projekt das den Google Reader ersetzen soll. Sinn der Sache ist es, einen Reader zur Verfügung zu stellen der sowohl günstig wie auch schnell funktionert.</description>
+			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/simple_reader_intro.html</link>
+			<guid>http://schlingel.bplaced.net/simple_reader_intro.html</guid>
+			<pubDate>23.06.2014</pubDate>
+		</item>
 		<item>
 			<title>Soup-Import broken? Vermutlich nur ein bisschen...</title>
 			<description>Kurzer Artikel der erklärt was geändert wurde damit der RSS-Import für soup.io funktioniert.</description>

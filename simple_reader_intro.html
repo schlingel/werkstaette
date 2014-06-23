@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="Martin Keiblinger">
+    <meta name="keywords" content="key1,key2">
+    <meta name="description" content="description">
+    <title>Blog article</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/blog.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+    <h2><a href="index.html">Schlingel's Werkstätte</a></h2>
+    <p>Software Engineering as Passion</p>
+</header>
+
+<section>
+    <article>
+        <header>
+            <h1>Simple Cloud Reader - SCR als Google Reader Ersatz</h1>
+            <p>Martin, 23.06.2014</p>
+        </header>
+
+        <p>Bald ist es ein Jahr her, dass der Google Reader eingestellt wurde. Ein Verlust den ich nach wie vor nicht überwunden habe. Es gibt zwar mit <a href="http://feedly.com/">Feedly</a> einen halbwegs brauchbaren Ersatz aber ganz zufrieden bin ich mit der App nicht. Denn:</p>
+        <ul>
+            <li>Das Ding ist vergesslich und lässt mich nicht unbegrenzt in die Vergangenheit zurück zurück blättern. Der gratis Account merkt sich bei mir nur ca. 400 Artikel. Das ist zu wenig, insbesondere da es Blogs gibt wo erst die mehrfache Lektüre der Artikel deren Nutzen frei legt. (z.B. <a href="http://www.mrmoneymustache.com/">Mr. Money Mustache</a>, <a href="http://dailyjs.com/">Daily JS</a>, etc.)</li>
+            <li>Es soll schmuck- und vor allem werbelos sein. Ich will den Content und keine Werbung.</li>
+        </ul>
+        <p>Deshalb dachte ich mir, ich bau mir was besseres. Sinn der Sache war das ganze so günstig wie möglich aufzustellen. Die Komponenten die ich benötige sind eine Reader-App für meine Androids - sowohl in Tablet- wie auch Handtelefongröße, eine Website auf der ich hauptsächlich Feeds hinzufügen kann und ein kleiner Service der mir den tatsächlichen Inhalt aus den Websites herausgräbt.</p>
+        <figure>
+           <img src="img/scr_diagram.png" alt="Diagram which shows the combination of three services which serve as reader service">
+           <p>Das System wird als verteiltes System erstellt das aus drei Komponenten besteht: Einem REST-Service zur Verwaltung der Verbindungen, einem Extractor-Service der aus den Feeds die Links ausliest und aus den jeweiligen Artikeln den Content extrahiert. Und einen FTP/Web-Server auf den die extrahierten Artikel gelegt werden. Dieser Content ist über Smartphone oder Website verfügbar.</p>
+        </figure>
+        <p>Das Diagramm zeigt bereits die Dreifaltigkeit des Systems. Diese Architektur wurde - im Vergleich zu einem einzigen Service - wurde deshalb gewählt da diese Variante kostensparend implementiert werden kann. Der REST-Service wird als <a href="https://www.openshift.com/">Openshift-Gear</a> deployed. Die Datenbank wird per weiterer Gear auch gratis hinzugefügt. Der Extraction-Service wird in Java implementiert (erster Prototyp auf <a href="https://github.com/schlingel/simpler-read-worker">Github</a>.) Die Website wird im ersten Schritt als simple Bootstrap-Seite entwickelt die auch mobil genutzt werden kann. Im nächsten Schritt wird die App nativ programmiert um die Kommunikation auf ein Minimum zu beschränken.</p>
+        <h2>Was ist zu tun?</h2>
+        <p>Im Moment muss ich noch das Semester abschließen aber ich überlege im Moment ob ich den vorhandenen Prototyp mit <a href="http://camel.apache.org/">Apache Camel</a> neu schreiben soll. Noch bevor ich diese Überlegung abgeschlossen habe, muss ich den REST-Service implementieren. Da bin ich allerdings noch in der Planungsphase. Das Ergebnis der Planung ist bis jetzt die Definition der API. (hier als <a href="https://docs.google.com/document/d/1q0YNMiQTgaX--TzzKe7cvW549s79JvfA3vHd5PPrEuQ/edit?usp=sharing">Google-Doc</a> zu finden). Zusätzlich habe ich daraus das nötige Datenmodell abgeleitet:</p>
+        <figure>
+            <img src="img/scr_erm_diagram.png" alt="ER-Diagram of SCR">
+            <p>Das ER-Diagram spart bei außer bei den Zwischentabellen die Felder aus. Wie zu sehen sind, gibt es zwei Zwischentabellen (feed interests und article interests). Sinn der Sache ist es, dass Artikel und Feeds erhalten bleiben auch wenn sie einen Benutzer nicht mehr interessieren.</p>
+        </figure>
+        <p>Ziel ist es am Ende dieses Sommers das Projekt soweit abgeschlossen zu haben das außer der nativen Mobile-App der Service produktiv einsetzbar ist. Für Anschlussprojekte sind auch schon Ideen da wie z.B. das die mobile App die Artikel vorlesen kann - was die Extraction noch wertvoller machen würde - um so auch während des Radfahrens die Feeds nicht zu verpassen.</p>
+    </article>
+</section>
+
+<footer>
+    <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+    <p>Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.</p>
+    <p><a href="index.html">Startseite</a> | <a href="impressum.html">Impressum</a> | <a href="http://schlingel.bplaced.net/rss.xml">Artikel als RSS-Feed<a/></p>
+</footer>
+
+</body>
+</html>
