@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="author" content="Martin Keiblinger">
+        <meta name="keywords" content="android,android studio,assemble task,gradle">
+        <meta name="description" content="Android Studio, der Grund warum das Eclipse ADT Plugin nicht weiter entwickelt wird hat viele Macken. Dieser Beitrag dreht sich um genau diese Macken.">
+        <title>Android Studio - Task 'assemble' not found</title>
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/blog.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <h2><a href="index.html">Schlingel's Werkstätte</a></h2>
+            <p>Software Engineering as Passion</p>
+        </header>
+
+        <section>
+            <article>
+                <header>
+                    <h1>Android Studio - Task 'assemble' not found</h1>
+                    <p>Martin, 27.06.2014</p>
+                </header>
+                <p>Android Studio ist die neue IDE von Google die dem Android-Entwickler die ganzen Problemchen und Probleme die bei der Entwicklung von Apps mit Eclipse auftauchen abnehmen soll. Das Problem an der Sache: AS (Android Studio) ist nach wie vor eine bessere Beta bei der man so ziemlich überall nachbessern muss. Generell gilt es ein paar Tipps zu berücksichtigen wenn man mit AS arbeitet:</p>
+                <ul>
+                    <li><b>Niemals</b> die IDE updaten wenn sie tatsächlich mal stabil läuft. Du bist drei Versionen hinten? Völlig egal! Sie läuft stabil. Nach dem Update ist das nicht garantiert.</li>
+                    <li>Niemals updaten nachdem du ein Projekt angelegt hast. Es kann sich alles ändern und dann sitzt man auf zerschossenen Gradle-Builds und wundert sich wo man denn da jetzt am besten anfängt.</li>
+                    <li>Lerne Gradle, lerne dich in IDEA ein. Alles andere ist das ahnungslose Herumgeklicke wie es früher mit den ganzen halbgaren Visual Studio Form-Editoren der Fall war. (Ich spreche aus Erfahrung: Ein Smart Pointer? Keine Ahnung was das sein soll aber Juhu, ich hab' ein Fenster zusammen geklickt.)</li>
+                </ul>
+                <p>Ich starte so ca. alle zwei Monate einen Anlauf und schau mir den Stand von AS an. Der vor zwei Monate löste in mir Begeisterungsstürme aus. Plötzlich war die Integration von <a href="http://androidannotations.org/">Android Annotations</a> kein Drahtseilakt mehr der das gesamte Projekt bei einem falschen Schritt aus der fragilen Konsistenz stieß. Dank diesem Artikel <a href="http://www.jayway.com/2014/02/21/androidannotations-setup-in-android-studio/">AndroidAnnotations setup in Android Studio</a> ist das mittlerweile tatsächlich in fünf Minuten erledigt. Yay!</p>
+                <p><b>Außer</b>, ja, außer man wagt es vor dem Einrichten eines neuen Projekts die IDE upzudaten. In meinem Fall habe ich von 0.5.irgendwas auf 0.6.1 upgedated. Die Hoffnung alte Projekte damit öffnen zu können habe ich ja gar nicht, aber man möchte doch meinen, dass ein nagelneu erstelltes Projekt funktioniert. Nope, tut's nicht. Folgende Fehlermeldung wird ausgegeben:</p>
+                <pre>
+Gradle:
+FAILURE: Could not determine which tasks to execute.
+
+* What went wrong:
+  Task 'assemble' not found in root project 'MyProject'.
+
+* Try:
+  Run gradle tasks to get a list of available tasks.
+                </pre>
+                <p>Nach kurzer Internet-Recherche stößt man dann auf die <a href="http://tools.android.com/knownissues">Known Issues</a> von AS. Dort wird der Fehler auch beschrieben und nachdem man vergebens das IML-File angepasst hat muss man dann tatsächlich den .idea-Ordner und das Projekt-File löschen, IDE neu starten und neu importieren.</p>
+                <figure>
+                    <img src="img/android_studio_fuckup.png" alt="Image of files and folders to delete">
+                    <p>In dieser Abbildung sind die zu löschen Files und Folders markiert. Danach kann das Projekt neu importiert werden.</p>
+                </figure>
+                <p>Google, das ist <b>peinlich</b>...</p>
+                <p>Aja, das ist die selbe Firma die selbstfahrende Autos herstellt und unbedingt in jeden Lebensbereich - völlig egal wie sensibel oder privat die Daten auch seien mögen - eindringen möchte. (Wie sie <a href="http://www.golem.de/news/proteste-auf-entwicklerkonferenz-google-und-die-wut-1406-107477.html">hier</a> z.B. ja offen zugeben.)</p>
+                <p>Auf die Update-Politik der Google-Cars, Heizungssteuerungen, etc. darf man jetzt schon gespannt sein...</p>
+            </article>
+        </section>
+
+    <footer>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+        <p>Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.</p>
+        <p><a href="index.html">Startseite</a> | <a href="impressum.html">Impressum</a> | <a href="http://schlingel.bplaced.net/rss.xml">Artikel als RSS-Feed<a/></p>
+    </footer>
+
+    </body>
+</html>

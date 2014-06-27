@@ -2,6 +2,12 @@
     "description" : "A very simple JSON containing the list of all articles. This allows the dynamically rendering of the latest articles on the client without the need to write HTML every time.",
     "articles" : [
         {
+            "date" : "27.06.2014",
+            "title" : "Android Studio - Task 'assemble' not found",
+            "description" : "Android Studio, der Grund warum das Eclipse ADT Plugin nicht weiter entwickelt wird hat viele Macken. Dieser Beitrag dreht sich um genau diese Macken.",
+            "link" : "as_assemble_task_not_found.html"
+        },
+        {
             "date" : "23.06.2014",
             "title" : "Simple Cloud Reader - SCR als Google Reader Ersatz",
             "description" : "SCR (Simple Cloud Reader) ist ein Projekt das den Google Reader ersetzen soll. Sinn der Sache ist es, einen Reader zur Verfügung zu stellen der sowohl günstig wie auch schnell funktionert.",

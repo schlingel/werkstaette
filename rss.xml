@@ -6,7 +6,15 @@
 		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
 		<language>de-AT</language>
 		<copyright>Martin Keiblinger</copyright>
-		<pubDate>Mon Jun 23 2014 14:45:32</pubDate>
+		<pubDate>Fri Jun 27 2014 10:47:29</pubDate>
+		<item>
+			<title>Android Studio - Task &apos;assemble&apos; not found</title>
+			<description>Android Studio, der Grund warum das Eclipse ADT Plugin nicht weiter entwickelt wird hat viele Macken. Dieser Beitrag dreht sich um genau diese Macken.</description>
+			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/as_assemble_task_not_found.html</link>
+			<guid>http://schlingel.bplaced.net/as_assemble_task_not_found.html</guid>
+			<pubDate>27.06.2014</pubDate>
+		</item>
 		<item>
 			<title>Simple Cloud Reader - SCR als Google Reader Ersatz</title>
 			<description>SCR (Simple Cloud Reader) ist ein Projekt das den Google Reader ersetzen soll. Sinn der Sache ist es, einen Reader zur Verfügung zu stellen der sowohl günstig wie auch schnell funktionert.</description>
