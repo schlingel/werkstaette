@@ -2,6 +2,12 @@
     "description" : "A very simple JSON containing the list of all articles. This allows the dynamically rendering of the latest articles on the client without the need to write HTML every time.",
     "articles" : [
         {
+            "date" : "13.07.2014",
+            "title" : "Du wirst überwacht",
+            "description" : "Ist die totale Überwachung schlimm? Es kann doch nicht tatsächlich mein Datensatz interessant sein. Immerhin bin ich ja brav und habe ja sowieso nichts zu verbergen. Der Idiotie hinter dieser Argumentationslinie wird mit der expliziten Normsetzung begegnet.",
+            "link" : "du_wirst_ueberwacht.html"
+        },
+        {
             "date" : "27.06.2014",
             "title" : "Android Studio - Task 'assemble' not found",
             "description" : "Android Studio, der Grund warum das Eclipse ADT Plugin nicht weiter entwickelt wird hat viele Macken. Dieser Beitrag dreht sich um genau diese Macken.",

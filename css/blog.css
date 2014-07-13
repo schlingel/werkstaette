@@ -2,6 +2,11 @@ body {
     padding: 20px;
 }
 
+blockquote {
+    font-size: 15px;
+    font-style: italic;
+}
+
 header > h1 {
     max-width: 810px;
     margin-left: auto;

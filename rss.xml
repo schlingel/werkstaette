@@ -6,7 +6,15 @@
 		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
 		<language>de-AT</language>
 		<copyright>Martin Keiblinger</copyright>
-		<pubDate>Fri Jun 27 2014 10:47:29</pubDate>
+		<pubDate>Sun Jul 13 2014 20:21:41</pubDate>
+		<item>
+			<title>Du wirst überwacht</title>
+			<description>Ist die totale Überwachung schlimm? Es kann doch nicht tatsächlich mein Datensatz interessant sein. Immerhin bin ich ja brav und habe ja sowieso nichts zu verbergen. Der Idiotie hinter dieser Argumentationslinie wird mit der expliziten Normsetzung begegnet.</description>
+			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/du_wirst_ueberwacht.html</link>
+			<guid>http://schlingel.bplaced.net/du_wirst_ueberwacht.html</guid>
+			<pubDate>13.07.2014</pubDate>
+		</item>
 		<item>
 			<title>Android Studio - Task &apos;assemble&apos; not found</title>
 			<description>Android Studio, der Grund warum das Eclipse ADT Plugin nicht weiter entwickelt wird hat viele Macken. Dieser Beitrag dreht sich um genau diese Macken.</description>
