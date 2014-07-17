@@ -6,7 +6,15 @@
 		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
 		<language>de-AT</language>
 		<copyright>Martin Keiblinger</copyright>
-		<pubDate>Sun Jul 13 2014 20:21:41</pubDate>
+		<pubDate>Thu Jul 17 2014 15:01:56</pubDate>
+		<item>
+			<title>Der Software-Entwickler als Unternehmer</title>
+			<description>Ein jeder Software-Entwickler hat das Potential und die nötige Ausrüstung um ein Unternehmer zu werden. Warum tun es dann verhältnismäßig so wenige? Produktentwicklung ist schwer, Verkauf ist schwer - warum eigentlich? Hier gebe ich einen kurzen Abriss von den Gedanken die ich mir dazu gemacht habe.</description>
+			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/entwickler_als_unternehmer.html</link>
+			<guid>http://schlingel.bplaced.net/entwickler_als_unternehmer.html</guid>
+			<pubDate>17.07.2014</pubDate>
+		</item>
 		<item>
 			<title>Du wirst überwacht</title>
 			<description>Ist die totale Überwachung schlimm? Es kann doch nicht tatsächlich mein Datensatz interessant sein. Immerhin bin ich ja brav und habe ja sowieso nichts zu verbergen. Der Idiotie hinter dieser Argumentationslinie wird mit der expliziten Normsetzung begegnet.</description>
