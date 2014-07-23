@@ -2,6 +2,12 @@
     "description" : "A very simple JSON containing the list of all articles. This allows the dynamically rendering of the latest articles on the client without the need to write HTML every time.",
     "articles" : [
         {
+            "date" : "23.07.2014",
+            "title" : "MVC, MVVM und MVP für Javascript – Vergleiche, Unterschiede und Empfehlungen",
+            "description" : "Die Webentwicklung mit Javascript professionalisiert sich. Der Touch von hacky und ahnungslos bröckelt immer weiter weg und zurück bleibt eine Sprache die in der Industrie auch für Enterprise-Anwendungen verwendet wird. MVC, MVVM und MVP sind Architektur-Pattern die eine immer größere Rolle spielen. Dieser Artikel befasst sich mit der Abgrenzung der Pattern und wann diese in JS zu verwenden sind.",
+            "link" : "mvc_mvp_mvvm_fuer_javascript.html"
+        },
+        {
             "date" : "17.07.2014",
             "title" : "Der Software-Entwickler als Unternehmer",
             "description" : "Ein jeder Software-Entwickler hat das Potential und die nötige Ausrüstung um ein Unternehmer zu werden. Warum tun es dann verhältnismäßig so wenige? Produktentwicklung ist schwer, Verkauf ist schwer - warum eigentlich? Hier gebe ich einen kurzen Abriss von den Gedanken die ich mir dazu gemacht habe.",

@@ -117,6 +117,7 @@ footer {
     font-size: 0.7em;
     text-align: center;
     padding: 1em;
+    clear: both;
 }
 
 .article-link {
@@ -125,6 +126,13 @@ footer {
     padding: 0.8em;
     border-radius: 1px;
     border: 1px solid #f2f2f2;
+    display: inline-block;
+    margin: 1%;
+    margin-left: 0;
+    margin-top: 0;
+    width: 48%;
+    float: left;
+    height: 370px;
 }
 
 .article-link > span {
@@ -143,4 +151,12 @@ footer {
 
 .article-link > h3 {
     text-align: left;
+}
+
+@media (max-width: 880px) {
+    .article-link {
+        width: 100%;
+        float: none;
+        height: auto;
+    }
 }
