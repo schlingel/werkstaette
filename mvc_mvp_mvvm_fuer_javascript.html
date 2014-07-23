@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="author" content="Martin Keiblinger">
+        <meta name="keywords" content="javascript,js,design pattern,struktur pattern,patter,architektur,softwarearchitektur,mvvm,mvp,mvc,model,view,presenter,viewmodel,controller">
+        <meta name="description" content="Die Webentwicklung mit Javascript professionalisiert sich. Der Touch von hacky und ahnungslos bröckelt immer weiter weg und zurück bleibt eine Sprache die in der Industrie auch für Enterprise-Anwendungen verwendet wird. MVC, MVVM und MVP sind Architektur-Pattern die eine immer größere Rolle spielen. Dieser Artikel befasst sich mit der Abgrenzung der Pattern und wann diese in JS zu verwenden sind.">
+        <title>MVC, MVVM und MVP für Javascript – Schöne Buzzwords aber wann verwende ich was?</title>
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/blog.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <h2><a href="index.html">Schlingel's Werkstätte</a></h2>
+            <p>Software Engineering as Passion</p>
+        </header>
+
+        <section>
+            <article>
+                <header>
+                    <h1>MVC, MVVM und MVP für Javascript – Schöne Buzzwords aber wann verwende ich was?</h1>
+                    <p>Martin, 23.07.2014</p>
+                </header>
+                <p>Herrliche Zeiten in denen wir JS-Entwickler leben. Nicht nur bombardieren uns gleich mehrere Unternehmen mit Programmiersprachen die nach Javascript kompilieren und „besser“ sind als JS, es gibt auch noch eine ganze Menge toller Architektur-Frameworks mit denen sogar JS getriebene Webapps sauber aufgestellt werden können.</p>
+
+                <p>Hier nur ein paar die ich mir einmal zu Gemüte geführt habe:</p>
+                <ul>
+                    <li><a href="http://knockoutjs.com/" rel="nofollow">Knockout</a></li>
+                    <li><a href="https://angularjs.org/" rel="nofollow">AngularJS</a></li>
+                    <li><a href="http://backbonejs.org" rel="nofollow">BackboneJS</a></li>
+                </ul>
+
+                <p>Aber natürlich hört da die Reise nicht auf. Es gibt noch zig andere, wie z.B. ember (http://emberjs.com/). Doch wie kommt das? Wie konnte aus einer Sprache in der ich Funktionen definiert habe und die dann im HTML mit “onclick”-Handlern verdrahtet habe plötzlich eine Sprache werden deren Anwendungen mit Architektur-Pattern strukturiert werden muss? Ehrlich gesagt, keine Ahnung. Aber wo kommen diese Struktur-Pattern her?</p>
+
+                <p>Design Patterns selbst sind alt. Bereits die Gang of Four definierte mit dem Observer-Pattern den Grundstein für MVC. Auch die Spuren von MVC gehen bis in die 90er zurück, doch waren Architektur-Pattern lange kein Thema. Jeder schrieb sich seine Anwendungen wie es ihm gefiel was häufig zu monolithischen Blöcken führte.</p>
+
+                <p>Ende der 90er kam mit Swing für die UI-Entwicklung für Desktop-Programme ein Framework das sich MVC als Vorbild genommen hat. Ein paar spärliche Versuche als Webframeworks kamen hinzu. Damit schwelte das Feuer des Architekturmusters in den Untiefen von verschiedenen Frameworks und kaum ein Mensch sprach darüber.</p>
+
+                <p>So um 2004 kam der Hype um MVC auf. Mit Ruby on Rails wurde das ganze auch trendy genug damit sich Web-Entwickler damit beschäftigen. Das ergab eine positive Rückkopplung wodurch die bereits verfügbaren MVC Frameworks in der Java- und PHP-Welt ebenfalls einen Boost bekamen.</p>
+
+                <p>Als Schlusslicht sprang Microsoft auf und packte ihrerseits ein Webframework in das .Net-Framework mit dem man eine Alternative zu Webforms bekam. Als dann ab 2007 Apple seinen Krieg gegen Flash began bekam Javascript ordentlich Aufwind. AngularJS kam 2009 heraus, 2010 wurden KnockoutJS und BackboneJS veröffentlicht womit es Architektur-Pattern endlich auch in eine breite Wahrnehmung der JS-Entwickler geschafft haben.</p>
+
+                <h2>MVC - Was ist das eigentlich?</h2>
+
+                <figure>
+                    <img src="img/mvc_wikipedia.png" alt="Diagram des MVC Patterns. Controller mit Model und View direkt verbunden. Die View ist indirekt mit dem Controller verbunden und direkt mit dem Model. Das Model zeigt indirekt auf die View.">
+                    <p>Hier werden die Abhängigkeiten der verschiedenen Komponenten des MVC-Patterns gezeigt. Der Controller kennt direkt Model und View und steckt die Model-Daten in die anzuzeigende View. Die View wiederum feuert Events welches den Controller dazu bringen das Model zu aktualisieren und damit auch die View. Bild stammt von <a href="http://de.wikipedia.org/wiki/Model_View_Controller">Wikipedia MVC</a></p>
+                </figure>
+
+                <p>Das MVC-Framework ist schnell erklärt: Es besteht aus drei Komponenten.</p>
+                <ul>
+                <li>Den Models, also der Data-Layer. Hier werden Domänenmodellklassen definiert aber auch der ganze DB-Code der sich um das Speichern, Laden und Ändern kümmert.</li>
+                <li>Den Views, der View-Layer definiert eine Schnittstelle in die Daten hineingeschossen werden und dann entsprechend der Implementierung angezeigt werden. Das kann z.B. dazu genutzt werden die selben Daten als HTML, JSON und XML anzubieten und dafür nur die View-Implementierung auszutauschen.</li>
+                <li>Den Controllern, also die Business Logic. Hier passiert die Action. Es wird der Zustand der aktuelle Applikation im Bedarfsfall geändert, es wird auf die Events der View reagiert und es wird mit dem Data-Layer kommuniziert um die daraus enthaltenen Daten in die View zurück zu schreiben.</li>
+                </ul>
+
+                <p>Das kann mal mit mehr Zustand (und Context) passieren wie im Fall von Swing-Applikationen oder JSF, mal mit weniger wie man es z.B. aus verschiedenen REST-Frameworks kennt.</p>
+
+                <p>Theoretisch bedient der Benutzer den „Controller“ um damit die Daten zu ändern was wiederum ein Update der View triggert. So jedenfalls beschreibt es die englische Wikipedia</p>
+
+                <figure>
+                    <img src="img/500px-MVC-Process.svg.png" alt="Diagram des MVC Patterns lt. englischer Wikipedia. Der Benutzer kommuniziert direkt mit dem Controller.">
+                    <p>Die realitätsferne Beschreibung, dass der Benutzer direkt mit dem Controller kommuniziert laut englischer <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Wikipedia MVC</a></p>
+                </figure>
+
+                <p>Ich persönliche kenne kein einziges Framework das dem User nicht die View als Bedienwerkzeug für den Controller zur Verfügung stellt. Ob es sich dabei jetzt um einen Button, einen Link oder etwas anderes handelt – die Logik damit der Benutzer eine Aktion im Controller auslöst sitzt in der View.</p>
+
+                <h2>Wofür dann noch MVVM und MVP?</h2>
+
+                <p>Wer aus der .Net-Welt kommt wird die Begriffe „Model View ViewModel“ und „Model View Presenter“ kennen. Diese Architekturstile sind sich sehr ähnlich. Sinn der Sache der beiden Architekturstiele ist es die View so lose wie möglich vom Controller abhängig zu machen und vice versa.</p>
+
+                <p>Defacto ist das MVP-Pattern eine MVC-Variante, welche sich gegen MVC dadurch abgrenzt dass es eine rein auf Interfaces basierte Implementierung vorschreibt und in der .Net-Praxis mittels Dependency Injection verwendet wird. Meiner bescheidenen Meinung handelt es sich dabei nur um ein MS-Buzzword welches eingeführt wurde um MVC auf Basis von Interfaces und IoC-Containern voran zu treiben.</p>
+
+                <p>Im Gegensatz dazu existiert mit dem MVVM-Framework ein Framework das anders zu implementieren ist. Wer sich die deutsche Wikipedia zu MVVM durchliest (aber auch die Englische) wird auf folgendes Diagramm stoßen:</p>
+
+                <figure>
+                    <img src="img/MVVMPattern_wikipedia.png" alt="Diagram des MVVM Patterns. ViewModel steht in der Mitte und kommuniziert mit der View und dem Model. Beide wissen nichts voneinander.">
+                    <p>Das gängige Diagramm von MVVM. Das ViewModel steht wie ein Controller zwischen View und Model und kümmert sich um die Updates in View bzw. Model. Diagramm von <a href="http://en.wikipedia.org/wiki/MVVM">Wikipedia MVVM</a></p>
+                </figure>
+
+                <p>Das tückische an diesem Diagramm ist, dass es dem unbedarften Leser vorgaukelt dass es den Controller nicht mehr bedarf. Also wird entweder das Model oder das ViewModel zum Controller aufgeblasen der sich dann um mehr kümmert als es muss.</p>
+
+                <p>In .Net wird viel Logik in Commands ausgelagert die aus der WPF-View getriggert werden können. In anderen Sprachen würde man hier von Events sprechen.</p>
+
+                <p>Praktisch ist das VM (ViewModel) ein Container der Daten enthält und auf Events wartet. Diese dann verarbeitet und damit entsprechenden den eigenen Zustand aktualisiert. Das wiederum löst andere Events aus, dass sich im VM der Zustand geändert hat.</p>
+
+                <p>Diese Zustandsänderung kann dann ein Controller, der in diesem Diagramm implizit ins ViewModel verschoben wurde, die Änderung in den Data-Layer zurückschreiben. Von der Idee Business Logic und Data-Layer-Logic zu mischen bin ich hier ehrlich gesagt auch nicht begeistert.</p>
+
+                <p>Wer sich daran hält bekommt mit dem VM eine weitere Komponente die es erlaubt die View dümmer zu halten und den Ort für Code darstellt, welcher vorhandene Daten so transformiert dass die View sie anzeigen kann. Zusätzlich bietet das VM Eventhandler an die von außen gefeuert werden können um den Zustand zu ändern.</p>
+
+                <p>Wo kommt diese These her? Mir entsponn sich ein etwas anderes Bild als ich die MSDN-Artikel aber auch die deutsche Wikipedia zu dem Thema durch las. (<a href="http://msdn.microsoft.com/de-de/magazine/dd419663.aspx">MVVM (de)</a>, <a href="http://blogs.msdn.com/b/msgulfcommunity/archive/2013/03/13/understanding_2d00_the_2d00_basics_2d00_of_2d00_mvvm_2d00_design_2d00_pattern.aspx">MVVM Basics (en)</a>, <a href="http://msdn.microsoft.com/en-us/library/hh848246.aspx">MVVM (en)</a>) Fakt ist allerdings, dass dann entweder Logik auf Commands verteilt werden die, die Funktionalität des VM soweit aufblasen, dass es sich um einen Controller handelt oder eben zusätzlich ein Controller eingeführt wird der vom VM angesteuert wird. Eine gute Erläuterung dieser Problematik ist in der Diskussion auf <a href="http://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm">Stackoverflow</a> zu finden aber auch in diesem <a href="http://blog.hitechmagic.com/?page_id=513">Blog-Artikel</a>.
+
+                <h2>Was ist für den Javascript-Entwickler interessant?</h2>
+
+                <p>Für den Javascript-Entwickler ist meiner Meinung nach wichtig diese Pattern zu kennen um sein eigenes (selbst gestricktes oder nicht) Framework zu begreifen. In meiner Arbeit habe ich für ein kleines Projekt die Erlaubnis das Projekt mit selbst entwickeltem MVVM auf Basis von <a href="https://github.com/baconjs/bacon.js/">BaconJS</a> und dessen Streams als Event-Bus zu bauen. Das hat mir viel beigebracht und die Einsicht gebracht, dass man in MVC-Frameworks wie AngularJS einfach ein ViewModel einziehen könnte.(Was in Angular durch Filter und Direktiven in der View auch erledigt werden kann.)</p>
+
+                <p>Aber wann verwende ich denn was?</p>
+
+                <table class="table">
+                    <tr>
+                        <th>MVC</th>
+                        <th>MVVM</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Die Models enthalten bereits die Daten die ich anzeigen möchte.</li>
+                                <li>Events aus der UI können direkt auf das Model angewendet werden und benötigen kaum Code im Controller um das Model vorzubereiten.</li>
+                                <li>Die Kapselung der anzuzeigenden Daten außerhalb des Models macht keinen Sinn und führt nur zu mehr Overhead.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Die Model-Daten müssen noch entsprechend ergänzt, zusammengeführt oder gefiltert werden.</li>
+                                <li>Komplexe Transformationen von angezeigtem Modell zu Persistance-Layer nötig.</li>
+                                <li>Das verwendete Framework lässt sich ohne grausliche Hacks so verwenden.</li>
+                                <li>Der zusätzliche Overhead bringt keinen Performance-Einbruch.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+
+            </article>
+        </section>
+
+    <footer>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+        <p>Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.</p>
+        <p><a href="index.html">Startseite</a> | <a href="impressum.html">Impressum</a> | <a href="http://schlingel.bplaced.net/rss.xml">Artikel als RSS-Feed<a/></p>
+    </footer>
+
+    </body>
+</html>
