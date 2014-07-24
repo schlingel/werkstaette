@@ -6,14 +6,14 @@
 		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
 		<language>de-AT</language>
 		<copyright>Martin Keiblinger</copyright>
-		<pubDate>Wed Jul 23 2014 22:30:45</pubDate>
+		<pubDate>Thu Jul 24 2014 10:53:38</pubDate>
 		<item>
 			<title>MVC, MVVM und MVP für Javascript – Vergleiche, Unterschiede und Empfehlungen</title>
 			<description>Die Webentwicklung mit Javascript professionalisiert sich. Der Touch von hacky und ahnungslos bröckelt immer weiter weg und zurück bleibt eine Sprache die in der Industrie auch für Enterprise-Anwendungen verwendet wird. MVC, MVVM und MVP sind Architektur-Pattern die eine immer größere Rolle spielen. Dieser Artikel befasst sich mit der Abgrenzung der Pattern und wann diese in JS zu verwenden sind.</description>
 			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
 			<link>http://schlingel.bplaced.net/mvc_mvp_mvvm_fuer_javascript.html</link>
 			<guid>http://schlingel.bplaced.net/mvc_mvp_mvvm_fuer_javascript.html</guid>
-			<pubDate>23.07.2014</pubDate>
+			<pubDate>24.07.2014</pubDate>
 		</item>
 		<item>
 			<title>Der Software-Entwickler als Unternehmer</title>
