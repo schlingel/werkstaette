@@ -24,13 +24,13 @@
                 </header>
                 <p>Die Javascript-Welt hat sich in den letzten 10 Jahren fundamental verändert. Während 2005 das Buzzword-Bingo vor allem bei Web 2.0 und Ajax verrückt spielte, schickten sich nur ein paar Jahre später verschiedene Entwickler-Teams an die monolithischen Code-Batzen – wie man sie zum Teil von jQuery-Plugins kennt – abzulösen und den Code in Models, Views und Controller aufzuteilen.</p>
 
-                <p>Sowohl ganze Code generierende Frameworks wie JavaScriptMVC, wie auch Schwergewichte die ohne Code-Generator auskommen (AngularJS, Knockout, Backbone.js und ember.js) warfen die alten „best practices“ Javascript getriebenen Anwendungen zu schreiben um und etablierten neue Standards.</p>
+                <p>Sowohl ganze Code generierende Frameworks wie JavaScriptMVC, wie auch Schwergewichte die ohne Code-Generator auskommen (AngularJS, Knockout, Backbone.js und ember.js) warfen die alten „best practices“ Javascript getriebener Anwendungen um und etablierten neue Standards.</p>
 
-                <p>Mit dieser Entwicklung steht eines fest: MVC sollte jedem JS-Entwickler ein Begriff sein. Doch Neben MVC gibt es weitere Architektur-Pattern die in den Tech-News hin und wieder auftauchen. Sowohl MVVM wie auch MVP sind Derivate von MVC die das eine oder andere Detail anders lösen. Diese Detailänderungen dienen dazu verschiedenen Probleme besser lösen zu können. Deshalb lohnt sich ein Blic darauf wo denn die Unterschiede liegen.</p>
+                <p>Mit dieser Entwicklung steht eines fest: MVC sollte jedem JS-Entwickler ein Begriff sein. Doch Neben MVC gibt es weitere Architektur-Pattern die in bekannt sein müssen. Sowohl MVVM (z.B. von Knockout) wie auch MVP (WPF) sind Derivate von MVC die das eine oder andere Detail anders lösen. Diese Detailänderungen tacklen verschiedenen Probleme besser bzw. schlechter. Deshalb lohnt sich ein Blick auf die Unterschiede samt Vor- und Nachteile.</p>
 
                 <h2>Der Klassiker: Model View Controller </h2>
 
-                <p>MVC ist ein altes Pattern, welches bereits in den 90ern bekannt war. Ende der 90er begann der Siegeszug des MVC-Pattern in den Webframeworks was zu einem kleinen Framework-Krieg führte. Java hatte sein Struts, PHP hatte sein Zend und Ruby sein Rails – im Endeffekt ein Gewinn für alle. Schnellere Entwicklungszyklen, einfache Testbarkeit der Komponenten und viel Heavy Lifting das in den externen Libs geschah.</p>
+                <p>MVC ist ein altes Pattern, welches bereits in den 90ern bekannt war. Ende der 90er begann der Siegeszug des MVC-Pattern in den Webframeworks. Dies führte zu einem Wettstreit der Sprachen und Frameworks. Unter anderem hatte Java sein Struts, PHP sein Zend und Ruby sein Rails – im Endeffekt ein Gewinn für alle. Sie alle schauten von der Konkurrenz ab was gut war und versuchten den Rest besser zu machen. Schnellere Entwicklungszyklen, einfache Testbarkeit der Komponenten und viel Heavy Lifting das in externen Libs ausgelagert wurde war das Ergebnis.</p>
 
                 <p>Das Prinzip ist einfach erklärt:</p>
 
@@ -49,41 +49,41 @@
 
                 <p>In der Praxis läuft das so ab, dass der Controller angesteuert wird (z.B. über Events, HTTP-Requests, etc.), Logik ausführt die das Model aktualisiert und diese Daten nimmt um es in die für den Request passende Response-View zu stopfen.</p>
 
-                <p>Die Beschreibung legt es bereits nahe: MVC ist wie geschaffen für Webframeworks. In der Praxis liefert die gerenderte View die nötigen Trigger um auf den Controller zuzugreifen weshalb das obige Diagramm nicht 1:1 der Realität entspricht. Der User interagiert mit der <i>View</i>.</p>
+                <p>Die Beschreibung legt es bereits nahe: MVC ist wie geschaffen für Webframeworks. In der Praxis liefert die gerenderte View die nötigen Trigger um auf den Controller zuzugreifen weshalb das obige Diagramm nicht 1:1 der Realität entspricht. Der User interagiert (auch) mit der <i>View</i>.</p>
 
                 <h2>Model View Presenter – das ungeliebte Stiefkind</h2>
 
-                <p>In den Jahren 2005 und 2006 tat sich etwas bei Microsoft. WPF betrat das Spielfeld und viele Techies unter des Softies wollten nicht, dass sich der Horror der monolithischen Code-Batzen in den Code-Behind-Files der Winforms-Designer sich wiederholte. So wurde überlegt wie die in WPF vorhandenen Commands- und Databinding-APIs möglichst sauber verwendet werden konnte um Anwendungen ordentlich zu strukturieren. Dazu musste evaluiert werden wie das bekannte MVC dafür verwendet werden kann.</p>
+                <p>In den Jahren 2005 und 2006 tat sich etwas bei Microsoft. WPF betrat das Spielfeld und viele Techies unter den Softies wollten nicht, dass sich der Horror der monolithischen Code-Batzen in den Code-Behind-Files, wie es von den Winforms-Designer-Projekten bekannt war, wiederholte. WPF trumpfte mit einer vielzahl von Mechanismen auf die Databindings einfacher und deskriptiv ermöglichen sollten. Mit einem Blick auf diese Möglichkeiten und den Einsatzzweck von Desktop-Anwendungen wurde versucht MVC so zu ändern dass es diese Anforderungen besser erfüllt.</p>
 
-                <p>Neben dem brennenden Bedürfnis unzählig viele unübersichtlich strukturierte Desktop-App-Programme zu verhindern war vor allem die Erkenntnis, dass:</p>
+                <p>Es stand von Anfang an also fest, dass die Code-Behind-Datei sauber bleiben muss. Aber was wurde sonst herausgefunden?</p>
 
                 <ol>
-                    <li>Der Benutzer nicht den Controller verwendet sondern die UI.</li>
-                    <li>Model-Daten werden selten so abgebildet wie die Daten in der DB lungern. Oft müssen Daten erweitert werden, gefiltert oder anders transformiert werden.</li>
-                    <li>Der Benutzer kein Interesse daran hat ein Terminal-Interface statt seiner WPF-View zu verwenden.</li>
+                    <li>Benutzer verwenden nicht direkt den Controller sondern die View bzw. das Fenster zur Eingabe.</li>
+                    <li>Model-Daten werden selten so abgebildet wie die Daten in der DB herum lungern. Oft müssen Daten erweitert, gefiltert oder anders transformiert werden. (Das hört sich nach WHEREs, JOINs, etc. an, muss aber oft zusätzlich noch in der UI geschehen.)</li>
+                    <li>Der Benutzer hat kein Interesse daran ein Terminal-Interface statt seiner WPF-View zu verwenden. Es kann also Sinn machen die Transformer-Logik eng an die View zu koppeln.</li>
                 </ol>
 
-                <p>Für jeden der nur eine View in seinem MVC-Framework verwendet und die Controller-Trigger in der View verstaut (Buttons, Links, etc.) merkt defacto keinen Unterschied. Im Falle von .Net-Anwendungen werden einige Framework spezifische Features von WPF verwendet aber das war es dann auch schon mit den großartigen Unterschieden.</p>
+                <p>Für jeden der nur eine View in seinem MVC-Framework verwendet und die Controller-Trigger in der View verstaut (Buttons, Links, etc.) und die Model-Daten in ein anderes Format vor der Anzeige bringt merkt defacto keinen Unterschied. Im Falle von .Net-Anwendungen werden Commands als Trigger verwendet, Observable-Lists um die in WPF eingebauten DataBindings zu triggern und halten so den Code des Presenters schlank.</p>
 
                 <figure>
                     <img src="img/mvp.png" alt="MVP-Diagramm zeigt wie der Presenter zwischen View und Model steht. In diesem Fall referenziert die View auch den Presenter. Beide können jeweils nur eine Instanz halten.">
                     <p>Der Presenter kann in diesem Fall nur eine View-Instanz halten und die View referenziert auch einen Presenter.</p>
                 </figure>
 
-                <p>Im Falle von .Net werden Views, Presenter und Models gegen Interfaces implementiert was zum einen die Testbarkeit erhöht und zum anderen dennoch das Austauschen von Views erleichtert.</p>
+                <p>Im Falle von .Net werden Views, Presenter und Models gegen Interfaces implementiert was zum einen die Testbarkeit erhöht und zum anderen dennoch das Austauschen von Views erleichtert. Auch wenn dies eher zur Startup-Zeit mittels Dependency Injection Container geschieht. (im MS-Sprech IoC-Container)</p>
 
                 <h2>Model View ModelView – Der beliebte Neuling</h2>
 
-                <p>Um MVP wurde es schnell still. Ein weiteres MVC-Derivat, das Model View ViewModel, kurz MVVM, verdrängte es schnell. Model View ViewModel stellt eine Konzentration darauf dar wie die Daten zwischen Model und View transformiert werden müssen. Dadurch benötigt die View auch keine Abhängigkeit zum Model. Sie greift ausschließlich auf das ViewModel zu. Das ViewModel stellt auch die nötige Funktionalität dar um die entsprechenden Daten des Models im Data-Layer zu aktualisieren zur Verfügung.</p>
+                <p>Um MVP wurde es schnell still. Ein weiteres MVC-Derivat, das Model View ViewModel, kurz MVVM, verdrängte es schnell. Model View ViewModel stellt eine Konzentration darauf dar wie die Daten zwischen Model und View transformiert werden müssen. Da die Transformation der Daten unabhängig von der View geschieht macht es keinen Sinn eine Kopplung zwischen ViewModel und View zu modellieren. Die View stöpselt das ViewModel ein, bekommt über Events die Daten und zeigt diese entsprechend an. Dementsprechend hält das ViewModel auch keine Referenz auf die View und ist so für beliebig viele Views verwendbar.</p>
 
                 <figure>
                     <img src="img/mvvm.png" alt="Das MVVM-Pattern bricht die 1:1 Verbindung im MVP-Pattern auf. Das ViewModel kennt beliebig viele Views, die Views referenzieren allerdings keine VM-Instanz. Die Kommunikation geschieht über Commands bzw. Events.">
                     <p>Das ViewModel kennt im Gegensatz zu einem Presenter keine View-Instanzen. Allerdings kann ein ViewModel von beliebig vielen Views verwendet werden. Die Kommunikation läuft über Commands in WPF, in anderen Sprachen kann dies mit Events abgebildet werden.</p>
                 </figure>
 
-                <p>Da der Fokus des ViewModels auf der Transformation der Daten liegt, kann es Sinn machen verschiedene Views zu verwenden. Z.B. wenn man Daten hat die sowohl in Listenform sowie auf einer Karte dargestellt werden sollen, dann könnte für beide Ansichten das selbe ViewModel verwendet werden mit verschiedenen Views.</p>
+                <p>Die Verwendung eines ViewModels für verschiedene Views macht in der App-Entwicklung und in der Web-Entwicklung Sinn wenn z.B. Daten als Liste aber auch auf einer Karte angezeigt werden sollen. Dann kann sowohl das Listen-ViewModel wie auch das Item-ViewModel wieder verwendet werden. Einmal für das Popup des Karten-Pins und einmal als Listen-Item.</p>
 
-                <p>In der Praxis wird das ViewModel oft um einen Controller erweitert der zum einen erlaubt das ViewModel leichtgewichtiger zu entwickeln die Aufgaben in einen eigens dafür nötigen Controller zu stecken.</p>
+                <p>In der Praxis wird das ViewModel oft um einen Controller erweitert der zum einen erlaubt das ViewModel leichtgewichtiger zu entwickeln. Der Gewichtsverlust wird dadurch erreicht, dass Code um mit dem Data-Layer zu kommunizieren und das Bootstrapping ausgelagert wird.</p>
 
                 <p>Die Aufgabe des Controllers ist es dann die Logik bereit zu stellen die ausgeführt werden soll wenn in der View entsprechende Events gefeuert werden und das ViewModel mit den Daten zu versorgen und bei Änderungen der Daten diese in das Model zurück zu schreiben.</p>
 
@@ -94,15 +94,15 @@
                     <p>Im Unterschied zu MVVM übernimmt der Controller die Kopplung zwischen ViewModel und Model statt einer direkten Verbindung. Dies erlaubt es Persistence-Code aus dem ViewModel in den Controller zu ziehen.</p>
                 </figure>
 
-                <p>Diese Form wird auch Model View Controller ViewModel genannt, kurz MVCVM. Die Idee stammt nicht von mir, sondern von <a href="http://blog.hitechmagic.com/?page_id=513">Hightechmagic</a>. Ist allerdings so gut, dass ich es gerne noch einmal hier erwähne.</p>
+                <p>Der Name und die explizite Formulierung dieses Prinzips stammt von <a href="http://blog.hitechmagic.com/?page_id=513">Hightechmagic</a>. Dies wird oft so gehandhabt aber dennoch MVVM genannt. Vorteil von MVCVM ist, dass die ViewModels nicht zu Gottobjekten degenieren und zuviel Aufgaben erhalten.</p>
 
                 <h2>Architektur-Pattern und Javascript</h2>
 
-                <p>Ohne die Features von WPF sehen sowohl MVP und MVVM wie MVC in der Praxis aus. Da Presenter wie auch ViewModel die Logik abbilden müssen. Dementsprechend stellt sich die Frage was für Javascript verwendet werden soll und welches Pattern tatsächlich eine Rolle für Javascript spielt.</p>
+                <p>Ohne die Features von WPF sehen sowohl MVP und MVVM in der Praxis ähnlich wie MVC aus, da Presenter wie auch ViewModel die Logik abbilden müssen. Dementsprechend stellt sich die Frage was für Javascript verwendet werden soll und welches Pattern tatsächlich eine Rolle für Javascript spielt.</p>
 
                 <p>Diese Argumentation ist bei weitem nicht in Stein gemeißelt und nur meine persönliche Meinung. Bei Anmerkungen würde ich mich über eine Mail mit der Kritik freuen. Adresse steht im Impressum.</p>
 
-                <p>MVP fällt für mich bereits von Anfang an raus. Es bietet keinen Vorteil in Javascript gegenüber dem MVVM-Pattern. Deshalb wird dies bei der folgenden Gegenüberstellung völlig ausgelassen:</p>
+                <p>MVP fällt für mich bereits von Anfang an raus. Es bietet keinen Vorteil in Javascript gegenüber dem MVVM- oder dem MVC-Pattern. Deshalb wird dies bei der folgenden Gegenüberstellung völlig ausgelassen:</p>
 
                 <table class="table">
                     <tr>
@@ -130,17 +130,17 @@
 
                 <p>Ich habe das Glück in einer Firma zu arbeiten die mir die Freiheit gibt auch kleine Expirmente mit Technologien zu machen. So habe ich für ein kleines Projekt die Anwendung mit <a href="https://github.com/baconjs/bacon.js/">BaconJS</a> und einer App mit selbst konstruiertem MVVM gebaut.</p>
 
-                <p>Gerade wenn die REST-API nicht zu 100% unter der eigenen Kontrolle steht, weil etwa das Backend-Team getrennt vom Frontend-Team entwickelt oder das bereits bestehende System den Response-Format technische Grenzen setzt, ist MVVM wohl die richtige Entscheidung.</p>
+                <p>Gerade wenn die REST-API nicht zu 100% unter der eigenen Kontrolle steht, weil etwa das Backend-Team getrennt vom Frontend-Team entwickelt oder das bereits bestehende System den Response-Format technische Grenzen setzt, ist MVVM die richtige Entscheidung.</p>
 
-                <p>Die Ergänzung mit einem Controller ist in jedem Fall sinnvoll um z.B. die REST-Kommunikation zu kapseln und den Einstiegspunkt für die Anwendung zur Verfügung zu stellen.</p>
+                <p>Die Ergänzung mit einem Controller ist sinnvoll um z.B. die REST-Kommunikation zu kapseln und den Einstiegspunkt für die Anwendung sauber strukturiert zur Verfügung zu stellen.</p>
 
-                <h2>Wir alle stehen auf Schultern von Giganten</h2>
+                <h2>Wir alle stehen auf den Schultern von Giganten</h2>
 
-                <p>Ich denke mit dieser Auflistung habe ich eine kurze und prägnante Erklärung der Pattern. Ziel war es die Abgrenzung zwischen den verschiedenen Pattern mit genügend Trennschärfe auszustatten woran es z.B. den Wikipedia-Artikeln mangelt.</p>
+                <p>Ich denke mit dieser Auflistung habe ich eine kurze und prägnante Erklärung der Pattern. Ziel war es die Abgrenzung zwischen den verschiedenen Pattern mit genügend Trennschärfe auszustatten dass der Unterschied klar wird. (Woran es z.B. den Wikipedia-Artikeln mangelt.)</p>
 
-                <p>Das geht natürlich nur in dem man einiges liest und so schaut was andere so schreiben und machen, deshalb hier eine Auflistung der Basis-Artikel dieses Textes:</p>
+                <p>Das geht natürlich nur in dem man einiges liest und schaut was andere schreiben und programmieren. Deshalb hier eine Auflistung der Basis dieses Textes:</p>
 
-                <ol>
+                <ul>
                     <li><a href="http://msdn.microsoft.com/de-de/magazine/dd419663.aspx">MSDN Artikel MVVM (de)</a></li>
                     <li><a href="http://blogs.msdn.com/b/msgulfcommunity/archive/2013/03/13/understanding_2d00_the_2d00_basics_2d00_of_2d00_mvvm_2d00_design_2d00_pattern.aspx">MVVM MSDN-Blog-Artikel</a></li>
                     <li><a href="http://msdn.microsoft.com/en-us/library/hh848246.aspx">MSDN Artikel MVVM (en)</a></li>
@@ -150,7 +150,9 @@
                     <li><a href="http://geekswithblogs.net/dlussier/archive/2009/11/21/136454.aspx">Unterschied zwischen MVC, MVP und MVVM</a></li>
                     <li><a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx#id0090009">MSDN MVVM-Artikel (en)</a></li>
                     <li><a href="http://martinfowler.com/eaaDev/PresentationModel.html">Artikel über MP (Autor ist Schöpfer des MVP-Patterns)</a></li>
-                </ol>
+                    <li><a href="http://addyosmani.com/blog/understanding-mvvm-a-guide-for-javascript-developers/">MVVM mit Javascript (en)</a></li>
+                    <li><a href="http://www.roypeled.com/an-mvp-guide-to-javascript-model-view-presenter/">MVP mit Javascript (en)</a></li>
+                </ul>
 
             </article>
         </section>
