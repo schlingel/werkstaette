@@ -33,7 +33,7 @@
 
                 <h2>Der Klassiker: Model View Controller </h2>
 
-                <p>MVC ist ein altes Pattern, welches bereits in den 90ern bekannt war. Ende der 90er begann der Siegeszug des MVC-Pattern in den Webframeworks. Dies führte zu einem Wettstreit der Sprachen und Frameworks. Unter anderem hatte Java sein Struts, PHP sein Zend und Ruby sein Rails – im Endeffekt ein Gewinn für alle. Sie alle schauten von der Konkurrenz ab was gut war und versuchten den Rest besser zu machen. Schnellere Entwicklungszyklen, einfache Testbarkeit der Komponenten und viel Heavy Lifting das in externen Libs ausgelagert wurde war das Ergebnis.</p>
+                <p>MVC ist ein altes Pattern, welches bereits in den 90ern bekannt war. Ende der 90er begann der Siegeszug des MVC-Pattern in den server-seitigen Webframeworks. Dies führte zu einem Wettstreit der Sprachen und Frameworks. Unter anderem hatte Java sein Struts, PHP sein Zend und Ruby sein Rails – im Endeffekt ein Gewinn für alle. Sie alle schauten von der Konkurrenz ab was gut war und versuchten den Rest besser zu machen. Schnellere Entwicklungszyklen, einfache Testbarkeit der Komponenten und viel Heavy Lifting das in externen Libs ausgelagert wurde war das Ergebnis.</p>
 
                 <h3>Was ist MVC?</h3>
 
@@ -60,14 +60,14 @@
 
                 <p>Die Begriffe verschwimmen bereits. Javascript ist schuld, dass das gerenderte HTML nicht mehr die gesamte View war und das Logik vom Server zum Client gewandert ist. Die Struktur wie sie oben aufgrund von Server-Side-Frameworks wie Rails, Zend oder Struts erläutert wurde bleibt gleich. Allerdings ist es wichtig, sich bewusst zu machen, dass die Server-Seite für JS-getriebene Anwendungen keine Rolle spielt.</p>
 
-                <p>Wichtig ist nur die Netzwerk-API, ob dies nun mit REST, SOAP oder einem eigenen Protokoll geschieht völlig egal. Daher hat auch der Controller des Zend-Frameworks der die Authorisierung des Benutzers prüft, dann die entsprechenden Daten lädt und dieses Model in die JSON renderende View steckt nichts mit dem Javascript-Client zu tun der das JSON auswertet.</p>
+                <p>Wichtig ist wie die Client-Seite mit der Server-Seite kommuniziert. Ob dies mit REST, SOAP oder einem eigenen Protokoll geschieht ist egal. Daher hat auch der Controller des Zend-Frameworks, der z.B. die Authorisierung des Benutzers prüft, dann die entsprechenden Daten lädt und dieses Model in die JSON renderende View steckt, nichts mit dem Javascript-Client zu tun der das JSON auswertet.</p>
 
                 <figure>
                     <img src="img/ServerClientMVC.png" alt="Architektur einer kompletten Anwendung mit einem Server- und einem Client-Teil">
                     <p>Dies ist eine Beispielarchitektur wie es möglich ist wenn auf der Server-Seite z.B. das Zend-Framework verwendet wird und auf der Client-Seite ein MVC-Framework. Die Controller kommunizieren, sind aber nur über das HTTP-Protokoll miteinander verbunden.</p>
                 </figure>
 
-                <p>Das oben erklärte Prinzip bleibt gleich, allerdings ist im folgenden ausschließlich die Client-Seite interessant. Dies führt neue Probleme ein, da das Model oder der Controller den Code für die Netzwerkkommunikation enthalten muss.</p>
+                <p>Dementsprechend können sowohl Server-Seite wie auch Client-Seite nach dem MVC-Pattern strukturiert werden. Das Prinzip ist sowohl für Server-Seite wie auch Clien-Seite gleich. Um Verwirrungen vorzubeugen ist im folgenden ausschließlich die Client-Seite gemeint. Die Aufteilung führt neue Probleme ein, da das Model oder der Controller den Code für die Netzwerkkommunikation enthalten muss.</p>
 
                 <p>Tutorials, Code im Produktiveinsatz und auch Code in Präsentationen zeigen beinahe ausschließlich den Netzwerk-Code innerhalb des Controllers. AngularJS bietet z.B. die Möglichkeit Models zu definieren die direkt auf einem REST-Endpunkt aufsetzen und dennoch war das erste Tutorial das ich zu AngularJS gefunden habe (<a href="http://code.tutsplus.com/tutorials/building-a-web-app-from-scratch-in-angularjs--net-32944">Building a Web App From Scratch in AngularJS</a>) ein Beispiel dafür, dass der Controller diese Aufgabe übernimmt:</p>
 
@@ -87,7 +87,7 @@ app.controller("mainController", function($scope, $http) {
     };
 });</code></pre>
 
-                <p>Da sich dieser Artikel um Javascript dreht, beziehen sich alle folgenden Aussagen ausschließlich auf Client-Apps. Das Prinzip bleibt dennoch der, dass der Controller bzw. dessen Ersatz als Kit zwischen Model und View dient.</p>
+                <p>Die Kommunikation mit dem Data-Layer interessiert den client-seitigen Controller nicht. Das Prinzip im Vergleich zum server-seitigen Controller bleibt trotzdem gleich: der Controller bzw. dessen Ersatz ist der Kit zwischen Model und View.</p>
 
                 <h2>Model View Presenter – das ungeliebte Stiefkind</h2>
 
@@ -108,9 +108,9 @@ app.controller("mainController", function($scope, $http) {
                     <p>Der Presenter kann in diesem Fall nur eine View-Instanz halten und die View referenziert auch einen Presenter.</p>
                 </figure>
 
-                <p>Im Falle von .Net werden Views, Presenter und Models gegen Interfaces implementiert was zum einen die Testbarkeit erhöht und zum anderen dennoch das Austauschen von Views erleichtert. Auch wenn dies eher zur Startup-Zeit mittels Dependency Injection Container geschieht. (im MS-Sprech IoC-Container)</p>
+                <p>Im Falle von .Net werden Views, Presenter und Models gegen Interfaces implementiert was zum einen die Testbarkeit erhöht und zum anderen das Austauschen von Views erleichtert. Auch wenn dies eher zur Startup-Zeit mittels Dependency Injection Container geschieht. (im MS-Sprech IoC-Container)</p>
 
-                <h2>Model View ModelView – Der beliebte Neuling</h2>
+                <h2>Model View ViewModel – Der beliebte Neuling</h2>
 
                 <p>Um MVP wurde es schnell still. Ein weiteres MVC-Derivat, das Model View ViewModel, kurz MVVM, verdrängte es schnell. Model View ViewModel stellt eine Konzentration darauf dar wie die Daten zwischen Model und View transformiert werden müssen. Da die Transformation der Daten unabhängig von der View geschieht macht es keinen Sinn eine Kopplung zwischen ViewModel und View zu modellieren. Die View stöpselt das ViewModel ein, bekommt über Events die Daten und zeigt diese entsprechend an. Dementsprechend hält das ViewModel auch keine Referenz auf die View und ist so für beliebig viele Views verwendbar.</p>
 
@@ -121,9 +121,15 @@ app.controller("mainController", function($scope, $http) {
 
                 <p>Die Verwendung eines ViewModels für verschiedene Views macht in der App-Entwicklung und in der Web-Entwicklung Sinn wenn z.B. Daten als Liste aber auch auf einer Karte angezeigt werden sollen. Dann kann sowohl das Listen-ViewModel wie auch das Item-ViewModel wieder verwendet werden. Einmal für das Popup des Karten-Pins und einmal als Listen-Item.</p>
 
-                <p>In der Praxis wird das ViewModel oft um einen Controller erweitert der zum einen erlaubt das ViewModel leichtgewichtiger zu entwickeln. Der Gewichtsverlust wird dadurch erreicht, dass Code um mit dem Data-Layer zu kommunizieren und das Bootstrapping ausgelagert wird.</p>
+                <p>In der Praxis wird das ViewModel oft um einen Controller erweitert der es erlaubt das ViewModel leichtgewichtiger zu entwickeln. Der Gewichtsverlust wird dadurch erreicht, dass der Code für das Bootstrapping und die Kommunikation mit dem Data-Layer ausgelagert wird.</p>
 
                 <p>Die Aufgabe des Controllers ist es dann die Logik bereit zu stellen die ausgeführt werden soll wenn in der View entsprechende Events gefeuert werden und das ViewModel mit den Daten zu versorgen und bei Änderungen der Daten diese in das Model zurück zu schreiben.</p>
+
+                <p>Die Aufgabe des Controllers sind in diesem Fall vor allem zwei DInge:</p>
+                <ol>
+                    <li>Logik bereitzustellen die beim Auftreten bestimmter Events ausgeführt werden sollen.</li>
+                    <li>Das Setup des Data-Layers, Bereitstellung des ursprünglichen Models und bei einer Änderung im ViewModel das geänderte Model zu persistieren.</li>
+                </ol>
 
                 <p>Einfach ausgedrückt: <b>Glue Code</b>.</p>
 
@@ -132,7 +138,7 @@ app.controller("mainController", function($scope, $http) {
                     <p>Im Unterschied zu MVVM übernimmt der Controller die Kopplung zwischen ViewModel und Model statt einer direkten Verbindung. Dies erlaubt es Persistence-Code aus dem ViewModel in den Controller zu ziehen.</p>
                 </figure>
 
-                <p>Der Name und die explizite Formulierung dieses Prinzips stammt von <a href="http://blog.hitechmagic.com/?page_id=513">Hightechmagic</a>. Dies wird oft so gehandhabt aber dennoch MVVM genannt. Vorteil von MVCVM ist, dass die ViewModels nicht zu Gottobjekten degenerieren und zuviel Aufgaben erhalten.</p>
+                <p>Vorteil von MVCVM ist, dass die ViewModels nicht zu Gottobjekten degenerieren und zuviel Aufgaben erhalten. Der Name und die explizite Formulierung dieses Prinzips stammt von <a href="http://blog.hitechmagic.com/?page_id=513">Hightechmagic</a>. Achtung: In der Praxis werden MVCVM-Realisierungen häufig als MVVM tituliert.</p>
 
                 <h2>Architektur-Pattern und Javascript</h2>
 
@@ -140,12 +146,14 @@ app.controller("mainController", function($scope, $http) {
 
                 <p>Diese Argumentation ist bei weitem nicht in Stein gemeißelt und nur meine persönliche Meinung. Bei Anmerkungen würde ich mich über eine Mail mit der Kritik freuen. Adresse steht im Impressum.</p>
 
-                <p>MVP fällt für mich bereits von Anfang an raus. Es bietet keinen Vorteil in Javascript gegenüber dem MVVM- oder dem MVC-Pattern. Deshalb wird dies bei der folgenden Gegenüberstellung völlig ausgelassen:</p>
+                <p>Die selben Argumente die für MVP sprechen, sprechen auch für MVVM. Unterschiedlich ist nur wie View und Presenter bzw. ViewModel miteinander kommunizieren. Enweder können sie einander direkt aufrufen oder arbeiten über Events.</p>
+
+
 
                 <table class="table">
                     <tr>
                         <th>MVC</th>
-                        <th>MVVM</th>
+                        <th>MVVM/MVP</th>
                     </tr>
                     <tr>
                         <td>
@@ -166,13 +174,13 @@ app.controller("mainController", function($scope, $http) {
                     </tr>
                 </table>
 
-                <p>Ich habe das Glück in einer Firma zu arbeiten die mir die Freiheit gibt auch kleine Expirmente mit Technologien zu machen. So habe ich für ein kleines Projekt die Anwendung mit <a href="https://github.com/baconjs/bacon.js/">BaconJS</a> und einer App mit selbst konstruiertem MVVM gebaut.</p>
+                <p>Gerade wenn die REST-API nicht zu 100% unter der eigenen Kontrolle steht, weil etwa das Backend-Team getrennt vom Frontend-Team entwickelt oder das bereits bestehende System den Response-Format technische Grenzen setzt, ist MVVM bzw. MVP die richtige Entscheidung.</p>
 
-                <p>Gerade wenn die REST-API nicht zu 100% unter der eigenen Kontrolle steht, weil etwa das Backend-Team getrennt vom Frontend-Team entwickelt oder das bereits bestehende System den Response-Format technische Grenzen setzt, ist MVVM die richtige Entscheidung.</p>
+                <p>Aber was ist mit MVCVM? Die Ergänzung mit einem Controller ist sinnvoll um z.B. die REST-Kommunikation zu kapseln und den Einstiegspunkt für die Anwendung sauber strukturiert zur Verfügung zu stellen. Es kann also leicht sein, dass sich aus MVVM ein MVCVM entwickelt.</p>
 
-                <p>Die Ergänzung mit einem Controller ist sinnvoll um z.B. die REST-Kommunikation zu kapseln und den Einstiegspunkt für die Anwendung sauber strukturiert zur Verfügung zu stellen.</p>
+                <p>In der Arbeit ist mir das Gegenteil passiert: Da die Daten vom Server 1:1 den abgebildeten Daten entsprachen, verwandelte sich ein geplantes MVVM in ein MVC. Es fühlte sich in diesem Fall natürlicher und einfach besser an.</p>
 
-                <p>Welches Pattern dann eingesetzt wird bleibt trotzdem Geschmackssache.</p>
+                <p>Daher: Welches Pattern am Ende eingesetzt wird bleibt auch Geschmackssache .</p>
 
                 <p>Igor Minar hat es in diesem <a href="https://plus.google.com/+AngularJS/posts/aZNVhj355G2">G+-Post</a> am besten ausgedrückt:</p>
 
@@ -180,10 +188,9 @@ app.controller("mainController", function($scope, $http) {
                     [...]I'd rather see developers build kick-ass apps that are well-designed and follow separation of concerns, than see them waste time arguing about MV* nonsense.[...]
                 </blockquote>
 
-
                 <h2>Wir alle stehen auf den Schultern von Giganten</h2>
 
-                <p>Ich denke mit dieser Auflistung habe ich eine kurze und prägnante Erklärung der Pattern. Ziel war es die Abgrenzung zwischen den verschiedenen Pattern mit genügend Trennschärfe auszustatten dass der Unterschied klar wird. (Woran es z.B. den Wikipedia-Artikeln mangelt.)</p>
+                <p>Ich denke mit dieser Auflistung habe ich eine kurze und prägnante Erklärung der Pattern zusammen gestellt. Ziel war es die Abgrenzung zwischen den verschiedenen Pattern mit genügend Trennschärfe auszustatten dass der Unterschied klar wird. (Woran es z.B. den Wikipedia-Artikeln mangelt.)</p>
 
                 <p>Das geht natürlich nur in dem man einiges liest und schaut was andere schreiben und programmieren. Deshalb hier eine Auflistung der Basis dieses Textes:</p>
 
