@@ -6,7 +6,15 @@
 		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
 		<language>de-AT</language>
 		<copyright>Martin Keiblinger</copyright>
-		<pubDate>Thu Jul 24 2014 10:53:38</pubDate>
+		<pubDate>Fri Aug 29 2014 12:36:58</pubDate>
+		<item>
+			<title>Android mit MVP strukturieren</title>
+			<description>Der professionelle Android-Entwickler setzt sich vom Hobbyisten vor allem durch sein methodischen Vorgehen ab. Dazu zählen auch die Verwendung von Architektur-Patterns. Dieser Artikel erklärt warum MVP ein gutes Pattern in der Android-Welt ist und wie es zu verwendet werden kann.</description>
+			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/android_mit_mvp_strukturieren.html</link>
+			<guid>http://schlingel.bplaced.net/android_mit_mvp_strukturieren.html</guid>
+			<pubDate>29.07.2014</pubDate>
+		</item>
 		<item>
 			<title>MVC, MVVM und MVP für Javascript – Vergleiche, Unterschiede und Empfehlungen</title>
 			<description>Die Webentwicklung mit Javascript professionalisiert sich. Der Touch von hacky und ahnungslos bröckelt immer weiter weg und zurück bleibt eine Sprache die in der Industrie auch für Enterprise-Anwendungen verwendet wird. MVC, MVVM und MVP sind Architektur-Pattern die eine immer größere Rolle spielen. Dieser Artikel befasst sich mit der Abgrenzung der Pattern und wann diese in JS zu verwenden sind.</description>

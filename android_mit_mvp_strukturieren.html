@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="author" content="Martin Keiblinger">
+        <meta name="keywords" content="Android,MVC,MVP,Architektur,Software,Developing,Entwickeln">
+        <meta name="description" content="Der professionelle Android-Entwickler setzt sich vom Hobbyisten vor allem durch sein methodischen Vorgehen ab. Dazu zählen auch die Verwendung von Architektur-Patterns. Dieser Artikel erklärt warum MVP ein gutes Pattern in der Android-Welt ist und wie es zu verwendet werden kann.">
+        <title>Android mit MVP strukturieren</title>
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/blog.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/blog.js"></script>
+        <link rel="stylesheet" href="css/zenburn.css">
+        <script src="js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <header>
+            <h2><a href="index.html">Schlingel's Werkstätte</a></h2>
+            <p>Software Engineering as Passion</p>
+        </header>
+
+        <section>
+            <article>
+                <header>
+                    <h1>Android mit MVP strukturieren</h1>
+                    <p>Martin, 29.08.2014</p>
+                </header>
+                <p>Ein gutes Software-Projekt bedeutet für den Entwickler in erster Linie, dass es die Kundenwünsche erfüllt. Dazu gehören auch eine saubere Struktur innerhalb der Applikation und eleganter Code. Dies sollte dazu führen, dass keine Bugs auftreten und falls doch einer an die Oberfläche krabbelt dieser besser entfernt werden kann.</p>
+
+                <h2>MVC als Lösung?</h2>
+
+                <p>Das MVC-Pattern kämpft sich seit über 10 Jahren in die Köpfe der Mainstream-Entwicklergemeinde und breitet sich in all möglichen Varianten und Derivaten über die zerklüftete Landschaft der Frameworks und Technologien aus.</p>
+
+                <figure>
+                    <img src="img/MVC.png" alt="Diagramm des MVC-Patterns">
+                    <p>Das klassische MVC-Pattern: Der Controller bekommt Input und verwendet eine entsprechende View um die Response anzuzeigen.</p>
+                </figure>
+                <p>Das Prinzip ist einfach: Ein Controller kapselt die nötige Logik um Model-Code und View-Code so ineinander zu stecken, dass die angeforderten Daten im angeforderten Format ausgeliefert werden.</p>
+
+                <p>Business-Logik sollte so weit wie möglich in das Model wandern, während die View-Komponente stumpf die erhaltenen Daten in das jeweilige Format bringt. Im Falle von Web-Anwendung kann es sich beim Format entweder um HTML, XML oder JSON handeln.</p>
+
+                <p>Klingt gut! Doch warum heißt der Artikel “Android-Apps mit MVP strukturieren” und nicht Android-Apps mit MVC strukturieren?”. Daran ist das Android-Framework schuld.</p>
+
+                <p>Die <a href="http://developer.android.com/guide/components/fundamentals.html">Google-Doku</a> definiert die vier großen Komponenten mit denen eine Android-Applikation gebaut wird so:</p>
+                <ul>
+                    <li>Activities</li>
+                    <li>Services</li>
+                    <li>Content providers</li>
+                    <li>Broadcast receivers</li>
+                </ul>
+
+                <p>Die uneingeschränkte Hauptrolle in einer Android-Anwendung spielt dennoch die Activity. Sie ist der Einstiegspunkt in die App, sie enthält Fragments, startet Services und kann mit diesen z.B. über Broadcasts kommunizieren.</p>
+
+                <p><a href="http://developer.android.com/reference/android/app/Activity.html">Google</a> definiert eine Activity so:</p>
+                <blockquote>An activity is a single, focused thing that the user can do. Almost all activities interact with the user, so the Activity class takes care of creating a window for you in which you can place your UI with setContentView(View).</blockquote>
+
+                <p>So schwammig und allumfassend wie diese Definition bereits ist, so hässlich sehen auch viele Anwendungen aus. Erschreckt hat mich z.B. der Artikel http://www.heise.de/ix/inhalt/2014/7/122/ Android-Apps und das Web da dieser Artikel in einem Fachmagazin in Zeiten von http://developer.android.com/training/volley/index.html Google Volley auf URLConnection setzt und vor allem weil die gezeigten Activities zu einem elend langen Mischmasch aus Netzwerk-Code und View-Code degeneriert sind.</p>
+
+                <p>Also muss ein Architektur-Pattern her! Doch MVC funktioniert nicht, da in Android zwangsweise die View, in Form der Activity, der Einstiegspunkt in die Applikation ist. Zusätzlich liefert diese “View” die nötigen Callbacks zu Lifecycle-Events.</p>
+
+                <h2>MVP to the Rescue</h2>
+
+                <p>Jetzt betritt MVP die Szene. Das Model View Presenter-Pattern ist ein Derivat des MVC-Patterns und unterscheidet sich nur in wenigen Punkte. Die zwei wichtigsten Punkte sind:</p>
+                <ol>
+                    <li>Es setzt auf eine enge 1:1 Kopplung zwischen View und Controller.</li>
+                    <li>Zusätzlich wird der Input nicht vom Controller bzw. Presenter angenommen sondern von der View.</li>
+                </ol>
+
+                <figure>
+                    <img src="img/mvp.png" alt="Diagramm des MVP-Patterns">
+                    <p>Die Rolle des Controllers übernimmt der Presenter. View und Presenter haben voneinander eine Referenz, die bei Events verwendet werden um entsprechende Methoden aufzurufen.</p>
+                </figure>
+
+                <p>Doch wie sieht das in der Praxis aus? Im folgenden stelle ich eine kleine, von Spritz inspirierte, Spead-Reading-App vor die auf MVP aufbaut. Da es eine enge Bindung zwischen View und Presenter gibt, wäre das Entwickeln gegen Interfaces nicht nötig, doch solange es in der App keine Performance-Probleme gibt, empfehle ich das trotzdem.</p>
+
+                <p>Wie der Name andeutet, braucht man erst mal ein Model, eine View und einen Presenter.</p>
+
+                <pre><code class="java">public interface ReaderModel {
+    public void setPresenter(ReaderPresenter presenter);
+    public String nextWord();
+    public void setActive(boolean isActive);
+}</code></pre>
+
+                <pre><code class="java">public interface ReaderPresenter {
+    public void setModel(ReaderModel model);
+    public void setView(ReaderView view);
+    public void onNextWord(String word);
+    public void onStartReading();
+}</code></pre>
+
+                <pre><code class="java">public interface ReaderView {
+    public void showWord(String Word);
+    public void setPresenter(ReaderPresenter presenter);
+}</code></pre>
+
+                <p>In diesem Fall möchte ich den Presenter so dumm wie möglich halten. Dieses Interesse kollidiert mit der Notwendigkeit, einen Timer einzusetzen. Daher wandert diese Logik in das Model. Da dafür ein Thread benötigt wird, bekommt dieser seine eigene Klasse:</p>
+
+                <pre><code class="java">public class ModelTimer extends Thread {
+    private static final long PAUSE_IN_MS = 120;
+    private ReaderPresenter presenter;
+    private ReaderModel model;
+    private boolean isStartNeeded;
+
+    public ModelTimer(ReaderModel model, ReaderPresenter presenter) {
+        this.presenter = presenter;
+        this.model = model;
+        this.isStartNeeded = true;
+    }
+
+    @Override
+    public void run() {
+        isStartNeeded = false;
+
+        while(true) {
+            String currentWord = model.nextWord();
+            boolean hasReachedLastWord = currentWord == null;
+
+            if(hasReachedLastWord) {
+                presenter.onNextWord("FINISH");
+                return;
+            }
+
+            presenter.onNextWord(currentWord);
+
+            sleep();
+        }
+    }
+
+    public boolean isStartNeeded() {
+        return isStartNeeded;
+    }
+
+    private void sleep() {
+        try {
+            Thread.currentThread().sleep(PAUSE_IN_MS);
+        } catch (InterruptedException e) {
+        }
+    }
+}</code></pre>
+
+                <p>Das macht das Model sehr übersichtlich:</p>
+
+                <pre><code class="java">public class StaticReaderModel implements ReaderModel {
+    // part of the article: http://www.spiegel.de/international/germany/german-considers-turkey-to-be-official-target-for-spying-a-986656.html
+    private static final String[] WORDS = new String[] {
+    "For", "more", "than", "a", "year", "now,", "German", "officials", "have", "criticized", "the", "US", "for", "the", "NSA's", "mass", "spying", "on", "Europeans", "and", "even", "Chancellor", "Angela", "Merkel.", "Now,", "embarrassing", "revelations", "show", "that", "Germany", "has", "inadvertently", "spied", "on", "Hillary", "Clinton", "and", "John", "Kerry,", "and", "has", "also", "deliberately", "targeted", "Turkey.",
+    "It", "was", "mid-July,", "and", "the", "German", "government", "had", "something", "it", "could", "be", "a", "bit", "proud", "of.", "For", "the", "first", "time", "in", "the", "never-ending", "spying", "affair,", "it", "had", "reacted", "quickly,", "unanimously", "and", "toughly.", "A", "spy", "for", "the", "Americans", "had", "been", "exposed", "inside", "Germany's", "foreign", "intelligence", "service,", "the", "Bundesnachrichtendienst", "(BND),", "and", "the", "government", "in", "Berlin", "ordered", "the", "CIA's", "top", "official", "in", "Germany", "to", "leave", "the", "country,", "demonstrating", "to", "Washington", "that", "it", "refused", "to", "put", "up", "with", "just", "anything.", "Berlin", "seemed", "to", "be", "going", "on", "the", "offensive.",
+    };
+
+    private ReaderPresenter presenter;
+    private int currentWord = 0;
+    private ModelTimer timerThread;
+
+    public StaticReaderModel() {
+        this.timerThread = null;
+    }
+
+    @Override
+    public void setPresenter(ReaderPresenter presenter) {
+        this.presenter = presenter;
+        this.timerThread = new ModelTimer(this, presenter);
+    }
+
+    @Override
+    public String nextWord() {
+        return currentWord >= WORDS.length ? null : WORDS[currentWord++];
+    }
+
+    @Override
+    public void setActive(boolean isActive) {
+        if(isActive) {
+            startTimerIfPossible();
+        }
+    }
+
+    private void startTimerIfPossible() {
+        if(timerThread != null && timerThread.isStartNeeded()) {
+            timerThread.start();
+        }
+    }
+}</code></pre>
+
+                <p>Da das Model die “Business-Logik” bereits kapselt, beschränkt sich der Presenter nur auf die oben erwähnte Glue-Logik.</p>
+
+                <pre><code class="java">public class StaticReaderPresenter implements ReaderPresenter {
+    private ReaderView view;
+    private ReaderModel model;
+
+    public StaticReaderPresenter() {
+        setModel(new StaticReaderModel());
+    }
+
+    @Override
+    public void setModel(ReaderModel model) {
+        this.model = model;
+        this.model.setPresenter(this);
+    }
+
+    @Override
+    public void setView(ReaderView view) {
+        this.view = view;
+    }
+
+    @Override
+    public void onNextWord(String word) {
+        this.view.showWord(word);
+    }
+
+    @Override
+    public void onStartReading() {
+        this.model.setActive(true);
+    }
+}</code></pre>
+
+                <p>Die Activity bzw. die View ist somit nur noch Werkzeug zur Darstellung und erledigt sonst keine Aufgabe:</p>
+
+                <pre><code class="java">public class Main extends ActionBarActivity implements ReaderView, View.OnClickListener {
+    private ReaderPresenter presenter;
+    private Button btnStart;
+    private TextView txtVwWord;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setPresenter(new StaticReaderPresenter());
+        attachEventHandler();
+    }
+
+    private void attachEventHandler() {
+        btnStart = (Button)findViewById(R.id.btnStart);
+        txtVwWord = (TextView)findViewById(R.id.txtVwWord);
+        btnStart.setOnClickListener(this);
+    }
+
+    @Override
+    public void showWord(String word) {
+        final String w = word;
+
+        txtVwWord.post(new Runnable() {
+            @Override
+            public void run() {
+                txtVwWord.setText(w);
+            }
+        });
+    }
+
+    @Override
+    public void setPresenter(ReaderPresenter presenter) {
+        this.presenter = presenter;
+        this.presenter.setView(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        this.presenter.onStartReading();
+    }
+}</code></pre>
+
+                <p>Das ganze Projekt gibt es natürlich auch online auf Github: <a href="https://github.com/schlingel/AbsorbReader">AbsorbReader</a></p>
+
+                <h2>Andere Pattern?</h2>
+
+                <p>Natürlich stehen MVC und MVP nicht im sonst luftleeren Raum. Ein weiterer Kandidat der MVC-Derivaten ist das MVVM-Pattern, das hier nur kurz erwähnt werden soll.</p>
+
+                <p>Der Unterschied zum MVP ist die fehlende Bindung zwischen Controller bzw. ViewModel und der View. Diese wird in C#/WPF mittels Commands überwunden und müsste in Android mittels Broadcasts implementiert werden.</p>
+
+                <p>Die Verwendung Patterns bedeutet zusätzlich Kommunikationsaufwand zwischen ViewModel und View. Dadurch empfiehlt sich die Verwendung nur, wenn es mehr als eine View für ein ViewModel gibt.</p>
+
+                <p>Im Falle von Android ist mir das nicht oft begegnet weswegen ich eher zu MVP greife. Doch wieder gilt: Hauptsache am Ende kommt eine geile App raus, die auch ordentlich gebaut wurde.</p>
+            </article>
+        </section>
+
+    <footer>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+        <p>Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.</p>
+        <p><a href="index.html">Startseite</a> | <a href="impressum.html">Impressum</a> | <a href="http://schlingel.bplaced.net/rss.xml">Artikel als RSS-Feed<a/></p>
+    </footer>
+
+    </body>
+</html>
