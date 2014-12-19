@@ -6,14 +6,14 @@
 		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
 		<language>de-AT</language>
 		<copyright>Martin Keiblinger</copyright>
-		<pubDate>Fri Aug 29 2014 12:36:58</pubDate>
+		<pubDate>Fri Dec 19 2014 11:37:29</pubDate>
 		<item>
-			<title>Android mit MVP strukturieren</title>
-			<description>Der professionelle Android-Entwickler setzt sich vom Hobbyisten vor allem durch sein methodischen Vorgehen ab. Dazu zählen auch die Verwendung von Architektur-Patterns. Dieser Artikel erklärt warum MVP ein gutes Pattern in der Android-Welt ist und wie es zu verwendet werden kann.</description>
+			<title>Weniger Flirten, mehr Probleme lösen</title>
+			<description>Die Neuropsychiatrie behandelt Leiden die das Leben der Betroffenen massiv verändern und einschränken. Hier könnte hin und wieder die Informatik helfen. Dieser Artikel ist eine Reflexion über Eindrücke und Ideen die während der Lektüre des Buches &quot;Der Mann der seine Frau mit einem Hut verwechselte&quot; aufkamen.</description>
 			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
-			<link>http://schlingel.bplaced.net/android_mit_mvp_strukturieren.html</link>
-			<guid>http://schlingel.bplaced.net/android_mit_mvp_strukturieren.html</guid>
-			<pubDate>29.07.2014</pubDate>
+			<link>http://schlingel.bplaced.net/weniger_flirten_mehr_probleme_loesen.html</link>
+			<guid>http://schlingel.bplaced.net/weniger_flirten_mehr_probleme_loesen.html</guid>
+			<pubDate>19.12.2014</pubDate>
 		</item>
 		<item>
 			<title>MVC, MVVM und MVP für Javascript – Vergleiche, Unterschiede und Empfehlungen</title>
@@ -21,7 +21,7 @@
 			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
 			<link>http://schlingel.bplaced.net/mvc_mvp_mvvm_fuer_javascript.html</link>
 			<guid>http://schlingel.bplaced.net/mvc_mvp_mvvm_fuer_javascript.html</guid>
-			<pubDate>24.07.2014</pubDate>
+			<pubDate>23.07.2014</pubDate>
 		</item>
 		<item>
 			<title>Der Software-Entwickler als Unternehmer</title>

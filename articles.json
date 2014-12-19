@@ -2,6 +2,12 @@
     "description" : "A very simple JSON containing the list of all articles. This allows the dynamically rendering of the latest articles on the client without the need to write HTML every time.",
     "articles" : [
         {
+            "date" : "19.12.2014",
+            "title" : "Weniger Flirten, mehr Probleme lösen",
+            "description" : "Die Neuropsychiatrie behandelt Leiden die das Leben der Betroffenen massiv verändern und einschränken. Hier könnte hin und wieder die Informatik helfen. Dieser Artikel ist eine Reflexion über Eindrücke und Ideen die während der Lektüre des Buches \"Der Mann der seine Frau mit einem Hut verwechselte\" aufkamen.",
+            "link" : "weniger_flirten_mehr_probleme_loesen.html"
+        },
+        {
             "date" : "23.07.2014",
             "title" : "MVC, MVVM und MVP für Javascript – Vergleiche, Unterschiede und Empfehlungen",
             "description" : "Die Webentwicklung mit Javascript professionalisiert sich. Der Touch von hacky und ahnungslos bröckelt immer weiter weg und zurück bleibt eine Sprache die in der Industrie auch für Enterprise-Anwendungen verwendet wird. MVC, MVVM und MVP sind Architektur-Pattern die eine immer größere Rolle spielen. Dieser Artikel befasst sich mit der Abgrenzung der Pattern und wann diese in JS zu verwenden sind.",
