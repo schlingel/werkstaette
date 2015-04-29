@@ -6,7 +6,15 @@
 		<description>Martin der Schlingel schreibt über eine seiner Leidenschaften: Software Engineering und was so dazu passt</description>
 		<language>de-AT</language>
 		<copyright>Martin Keiblinger</copyright>
-		<pubDate>Fri Dec 19 2014 11:37:29</pubDate>
+		<pubDate>Wed Apr 29 2015 22:58:36</pubDate>
+		<item>
+			<title>Build 2015 - Was gibt&apos;s Neues, Microsoft?</title>
+			<description>Eine Zusammenfassung der Ankündigung betreffend .Net für Mac OS und Linux. VSCode, .Net Runtime und ASP.net 5 sind jetzt auch für andere Plattformen als Windows verfügbar.</description>
+			<author>Martin Keiblinger, der-schlingel@gmx.at</author>
+			<link>http://schlingel.bplaced.net/build2015_vscode_coreclr_asp5.html</link>
+			<guid>http://schlingel.bplaced.net/build2015_vscode_coreclr_asp5.html</guid>
+			<pubDate>29.04.2015</pubDate>
+		</item>
 		<item>
 			<title>Weniger Flirten, mehr Probleme lösen</title>
 			<description>Die Neuropsychiatrie behandelt Leiden die das Leben der Betroffenen massiv verändern und einschränken. Hier könnte hin und wieder die Informatik helfen. Dieser Artikel ist eine Reflexion über Eindrücke und Ideen die während der Lektüre des Buches &quot;Der Mann der seine Frau mit einem Hut verwechselte&quot; aufkamen.</description>

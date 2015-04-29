@@ -1,4 +1,4 @@
-#!/usr/local/bin/node
+#!/usr/bin/node
 /**
  * Simple generator which creates a RSS feed file from the articles.json
  * Just run articles2rss in blog directory
